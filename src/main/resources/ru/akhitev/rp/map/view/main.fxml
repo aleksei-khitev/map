@@ -24,7 +24,12 @@
                                 <Canvas fx:id="map" cache="false" />
                             </content>
                         </ScrollPane>
-                        <TextArea fx:id="objectInfo" editable="false" focusTraversable="false" prefHeight="750.0" prefWidth="308.0" wrapText="true"/>
+                        <VBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
+                            <children>
+                                <TextArea fx:id="objectInfo" editable="false" focusTraversable="false" prefHeight="400.0" prefWidth="308.0" wrapText="true"/>
+                                <Button text="Маршрут" onAction="#startOrStopRoute"/>
+                            </children>
+                        </VBox>
                     </children>
                 </HBox>
                 <HBox xmlns:fx="http://javafx.com/fxml">

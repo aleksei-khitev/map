@@ -1,5 +1,5 @@
 group 'ru.akhitev.rp'
-version '0.0.1'
+version '0.0.2'
 
 buildscript {
     ext {
@@ -59,7 +59,7 @@ task makeZip(type: Zip) {
 
 jar {
     baseName = 'galaxy_map'
-    version =  '0.0.1'
+    version =  '0.0.2'
 }
 
 sourceCompatibility = 1.8
