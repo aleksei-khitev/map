@@ -6,6 +6,14 @@ import javax.inject.Named;
 public class DrawingProperties {
     private Integer scale;
 
+    public Double scaleCoordinate(Double coordinate) {
+        return coordinate * scale;
+    }
+
+    public Double reScaleCoordinate(Double coordinate) {
+        return coordinate / scale;
+    }
+
     public Integer getScale() {
         return scale;
     }

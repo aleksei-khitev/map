@@ -11,23 +11,34 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <Pane style="-fx-background-color: grey;" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1800.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.akhitev.rp.map.controller.MainController">
     <children>
         <VBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
             <children>
                 <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white; -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );">Galactic Map</Label>
-                <HBox xmlns:fx="http://javafx.com/fxml">
+                <HBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
                     <children>
                         <ScrollPane id="drawScrollPane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="950.0" prefWidth="1400.0"  style="-fx-background-color: grey;">
                             <padding><Insets top="25" right="25" bottom="25" left="25"/></padding>
                             <content>
-                                <Canvas fx:id="map" cache="false" />
+                                <Canvas fx:id="map" style="-fx-background-color: grey;"/>
                             </content>
                         </ScrollPane>
                         <VBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
                             <children>
                                 <TextArea fx:id="objectInfo" editable="false" focusTraversable="false" prefHeight="400.0" prefWidth="308.0" wrapText="true"/>
-                                <Button text="Маршрут" onAction="#startOrStopRoute"/>
+                                <Canvas fx:id="emblems" width="160" height="80" />
+                                    <HBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
+                                        <fx:define>
+                                            <ToggleGroup fx:id="mapPointerGroup"/>
+                                        </fx:define>
+                                        <children>
+                                            <ToggleButton fx:id="infoButton" text="Информация" toggleGroup="$mapPointerGroup"/>
+                                            <ToggleButton fx:id="routeButton" text="Маршрут" toggleGroup="$mapPointerGroup" />
+                                        </children>
+                                    </HBox>
                             </children>
                         </VBox>
                     </children>

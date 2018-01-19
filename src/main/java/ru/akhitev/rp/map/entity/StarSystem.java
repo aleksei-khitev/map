@@ -20,6 +20,9 @@ public class StarSystem {
     @NonNull
     private StateHood statehood;
 
+    @ManyToOne @JoinColumn(name = "super_statehood_id")
+    private SuperStateHood superStatehood;
+
     @Column(name = "coordinateX", nullable = false)
     @NonNull
     private Double coordinateX;
@@ -52,6 +55,14 @@ public class StarSystem {
         this.statehood = statehood;
     }
 
+    public SuperStateHood getSuperStatehood() {
+        return superStatehood;
+    }
+
+    public void setSuperStatehood(SuperStateHood superStatehood) {
+        this.superStatehood = superStatehood;
+    }
+
     public Double getCoordinateX() {
         return coordinateX;
     }
@@ -66,5 +77,15 @@ public class StarSystem {
 
     public void setCoordinateY(Double coordinateY) {
         this.coordinateY = coordinateY;
+    }
+
+    @Override
+    public String toString() {
+        final String format = "Система %s [%.2f, %.2f]\nПринадлежность: %s";
+        StringBuilder builder = new StringBuilder(String.format(format, name, coordinateX, coordinateY, statehood.getName()));
+        if (superStatehood != null) {
+            builder.append(String.format("\nСверхобъединение: %s", superStatehood.getName()));
+        }
+        return builder.toString();
     }
 }

@@ -34,6 +34,10 @@ public class Router {
         return String.format(format, scale(points.get(0).x), scale(points.get(0).y), scale(points.get(1).x), scale(points.get(0).y));
     }
 
+    public void reset() {
+        points = null;
+    }
+
     private Double calculate() {
         Point point1 = points.get(0);
         Point point2 = points.get(1);
