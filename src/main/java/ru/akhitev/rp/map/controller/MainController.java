@@ -9,12 +9,12 @@ import javax.inject.Inject;
 
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import ru.akhitev.rp.map.drawer.DrawingProperties;
+import ru.akhitev.rp.map.drawer.ScalingManager;
+import ru.akhitev.rp.map.drawer.EmblemDrawer;
 import ru.akhitev.rp.map.drawer.GridOfCoordinatesDrawer;
-import ru.akhitev.rp.map.drawer.StarSystemDrawer;
+import ru.akhitev.rp.map.drawer.starsystem.StarSystemDrawingManager;
 import ru.akhitev.rp.map.entity.StarSystem;
 import ru.akhitev.rp.map.hyperspace.EmpireLightSpeedCalculator;
 import ru.akhitev.rp.map.hyperspace.VortexSpeedCalculator;
@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 
 @FXMLController
 public class MainController implements Initializable {
-    private static final Integer MAP_WIDTH = 1000;
+    private static final Integer MAP_WIDTH = 2000;
     private static final Integer MAP_HEIGHT = 1000;
 
     @FXML
@@ -52,10 +52,13 @@ public class MainController implements Initializable {
     private GridOfCoordinatesDrawer gridOfCoordinatesDrawer;
 
     @Inject
-    private StarSystemDrawer starSystemDrawer;
+    private EmblemDrawer emblemDrawer;
 
     @Inject
-    private DrawingProperties drawingProperties;
+    private StarSystemDrawingManager systemDrawingManager;
+
+    @Inject
+    private ScalingManager scalingManager;
 
     @Inject
     private Router router;
@@ -68,37 +71,37 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        drawingProperties.setScale(1);
+        scalingManager.setScale(1);
         initialize();
     }
 
     @FXML
     public void setScaleX1() {
-        drawingProperties.setScale(1);
+        scalingManager.setScale(1);
         initialize();
     }
 
     @FXML
     public void setScaleX2() {
-        drawingProperties.setScale(2);
+        scalingManager.setScale(2);
         initialize();
     }
 
     @FXML
     public void setScaleX3() {
-        drawingProperties.setScale(3);
+        scalingManager.setScale(3);
         initialize();
     }
 
     private void initialize() {
         clearMap();
-        map.setWidth(MAP_WIDTH * drawingProperties.getScale());
-        map.setHeight(MAP_HEIGHT * drawingProperties.getScale());
+        map.setWidth(MAP_WIDTH * scalingManager.getScale());
+        map.setHeight(MAP_HEIGHT * scalingManager.getScale());
         GraphicsContext gc = map.getGraphicsContext2D();
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, map.getWidth(), map.getHeight());
         gridOfCoordinatesDrawer.draw(map);
-        starSystemDrawer.draw(map);
+        systemDrawingManager.draw(map);
         addOnMousePressedEvent();
     }
 
@@ -126,11 +129,11 @@ public class MainController implements Initializable {
         gc.setFill(Color.GRAY);
         gc.fillRect(0, 0, emblems.getWidth(), emblems.getHeight());
         gc.clearRect(0, 0, emblems.getWidth(), emblems.getHeight());
-        List<StarSystem> starSystems = starSystemRepository.findNearCoordinates(drawingProperties.reScaleCoordinate(event.getX()), drawingProperties.reScaleCoordinate(event.getY()));
+        List<StarSystem> starSystems = starSystemRepository.findNearCoordinates(scalingManager.reScaleCoordinate(event.getX()), scalingManager.reScaleCoordinate(event.getY()));
         if (starSystems != null && starSystems.size() > 0) {
             StarSystem starSystem = starSystems.get(0);
             objectInfo.appendText(starSystem.toString());
-            starSystemDrawer.drawEmblems(emblems, starSystem);
+            emblemDrawer.drawEmblems(emblems, starSystem);
         } else {
             objectInfo.appendText("В выбранном участке +-15 единиц системы не найдены.");
         }

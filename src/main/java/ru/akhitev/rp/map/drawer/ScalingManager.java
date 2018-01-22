@@ -3,7 +3,7 @@ package ru.akhitev.rp.map.drawer;
 import javax.inject.Named;
 
 @Named
-public class DrawingProperties {
+public class ScalingManager {
     private Integer scale;
 
     public Double scaleCoordinate(Double coordinate) {

@@ -1,6 +1,6 @@
 package ru.akhitev.rp.map.router;
 
-import ru.akhitev.rp.map.drawer.DrawingProperties;
+import ru.akhitev.rp.map.drawer.ScalingManager;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,7 +13,7 @@ public class Router {
     private List<Point> points;
 
     @Inject
-    private DrawingProperties drawingProperties;
+    private ScalingManager scalingManager;
 
     public void startRoute(double x, double y) {
         points = new ArrayList<>();
@@ -54,7 +54,7 @@ public class Router {
     }
 
     private double scale(double number) {
-        return number / drawingProperties.getScale();
+        return number / scalingManager.getScale();
     }
 
     private class Point {

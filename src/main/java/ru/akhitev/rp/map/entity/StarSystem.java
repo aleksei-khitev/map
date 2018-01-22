@@ -23,6 +23,10 @@ public class StarSystem {
     @ManyToOne @JoinColumn(name = "super_statehood_id")
     private SuperStateHood superStatehood;
 
+    @Column(name = "system_importance", nullable = false)
+    @NonNull
+    private StarSystemImportance systemImportance;
+
     @Column(name = "coordinateX", nullable = false)
     @NonNull
     private Double coordinateX;
@@ -63,6 +67,14 @@ public class StarSystem {
         this.superStatehood = superStatehood;
     }
 
+    public StarSystemImportance getSystemImportance() {
+        return systemImportance;
+    }
+
+    public void setSystemImportance(StarSystemImportance systemImportance) {
+        this.systemImportance = systemImportance;
+    }
+
     public Double getCoordinateX() {
         return coordinateX;
     }
@@ -87,5 +99,9 @@ public class StarSystem {
             builder.append(String.format("\nСверхобъединение: %s", superStatehood.getName()));
         }
         return builder.toString();
+    }
+
+    public enum StarSystemImportance {
+        SUPER_STATEHOOD_CAPITAL, STATEHOOD_CAPITAL, IMPORTANT_SYSTEM, SYSTEM;
     }
 }

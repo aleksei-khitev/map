@@ -13,7 +13,7 @@ public class GridOfCoordinatesDrawer implements Drawer{
     private static final Double LINE_WIDTH = 0.5;
 
     @Inject
-    private DrawingProperties drawingProperties;
+    private ScalingManager scalingManager;
 
     public void draw(Canvas map) {
         drawGrid(map);
@@ -24,8 +24,8 @@ public class GridOfCoordinatesDrawer implements Drawer{
         graphicsContext.setFill(Color.GRAY);
         graphicsContext.setStroke(Color.LIGHTGRAY);
         graphicsContext.setLineWidth(LINE_WIDTH);
-        drawX(map, graphicsContext, drawingProperties.getScale());
-        drawY(map, graphicsContext, drawingProperties.getScale());
+        drawX(map, graphicsContext, scalingManager.getScale());
+        drawY(map, graphicsContext, scalingManager.getScale());
     }
 
     private void drawX(Canvas map, GraphicsContext graphicsContext, Integer scale) {

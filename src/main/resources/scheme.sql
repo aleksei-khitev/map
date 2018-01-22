@@ -17,6 +17,7 @@ CREATE TABLE Star_System (
     name VARCHAR(200) NOT NULL
     statehood_id INTEGER
     super_statehood_id INTEGER
+    system_importance ENUM
     coordinateX DOUBLE NOT NULL
     coordinateY DOUBLE NOT NULL
 );

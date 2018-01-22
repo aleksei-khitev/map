@@ -20,7 +20,7 @@ public class StateHood {
     @NonNull
     private String name;
 
-    @Column(name = "image", nullable = false)
+    @Column(name = "image")
     private String image;
 
     @Column(name = "color", nullable = false)
