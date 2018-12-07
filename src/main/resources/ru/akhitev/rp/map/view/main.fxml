@@ -45,9 +45,9 @@
                 </HBox>
                 <HBox xmlns:fx="http://javafx.com/fxml">
                     <children>
-                        <Button text="Масштаб X1" onAction="#setScaleX1"/>
-                        <Button text="Масштаб X2" onAction="#setScaleX2"/>
-                        <Button text="Масштаб X3" onAction="#setScaleX3"/>
+                        <Button text="Масштаб X1" onAction="#setScale" userData="1"/>
+                        <Button text="Масштаб X2" onAction="#setScale" userData="2"/>
+                        <Button text="Масштаб X3" onAction="#setScale" userData="3"/>
                     </children>
                 </HBox>
             </children>

@@ -16,12 +16,11 @@ public class StarSystemDrawingManager {
     @Inject
     private ScalingManager scalingManager;
 
-    public void draw(Canvas map) {
-        starSystemRepository.findAll().forEach(starSystem -> {drawSystem(map, starSystem);});
+    public void draw(GraphicsContext graphicsContext2D) {
+        starSystemRepository.findAll().forEach(starSystem -> {drawSystem(graphicsContext2D, starSystem);});
     }
 
-    private void drawSystem(Canvas map, StarSystem starSystem) {
-        GraphicsContext graphicsContext2D = map.getGraphicsContext2D();
+    private void drawSystem(GraphicsContext graphicsContext2D, StarSystem starSystem) {
         AbstractStarSystemDrawer systemDrawer;
         switch (starSystem.getSystemImportance()) {
             case SUPER_STATEHOOD_CAPITAL:

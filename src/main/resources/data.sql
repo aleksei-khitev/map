@@ -160,3 +160,34 @@ INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_impor
 INSERT INTO State_Hood(id, name, image, color) VALUES (14,'Tal-Kona-Sha Colonials', null, 'SNOW');
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (126,'Ren-kal`TA', 14, 1, 1, 240.0, 123.0);
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (127,'Ohram`KHI', 14, 1, 3, 295.0, 108.0);
+
+INSERT INTO State_Hood(id, name, image, color) VALUES (15,'Brakiri Industrialism', null, 'PEACHPUFF');
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (128,'Brakos', 15, 1, 1, 196.0, 438.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (129,'Ikata', 15, 1, 3, 221.0, 404.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (130,'Comac', 15, 1, 3, 200.0, 495.0);
+
+INSERT INTO State_Hood(id, name, image, color) VALUES (16,'Ipsha Socialism', null, 'SALMON');
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (131,'Ipsha', 16, 1, 1, 120.0, 474.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (132,'Eklor', 16, 1, 3, 48.0, 523.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (133,'Eklor', 16, 1, 3, 67.0, 326.0);
+
+INSERT INTO State_Hood(id, name, image, color) VALUES (17,'Cescar Empire', null, 'ROYALBLUE');
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (134,'Cescan', 17, 1, 1, 208.0, 580.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (135,'Silkan', 17, 1, 3, 242.0, 572.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (136,'Zachai', 17, 1, 3, 180.0, 465.0);
+
+INSERT INTO State_Hood(id, name, image, color) VALUES (18,'Gaim Inteligence', null, 'ROSYBROWN');
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (137,'N`Chak`Fah', 18, 1, 1, 260.0, 605.0);
+
+INSERT INTO State_Hood(id, name, image, color) VALUES (19,'Descari Monarchy', null, 'SADDLEBROWN');
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (138,'Bestin', 19, 1, 1, 156.0, 700.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (139,'T`Lad`Tha', 19, 1, 3, 230.0, 700.0);
+
+INSERT INTO State_Hood(id, name, image, color) VALUES (20,'Llot Democracy', null, 'SANDYBROWN');
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (140,'Vartas', 20, 1, 1, 100.0, 640.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (141,'Sorrin', 20, 1, 3, 10.0, 665.0);
+
+INSERT INTO State_Hood(id, name, image, color) VALUES (21,'Yolu Confederation', null, 'PERU');
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (142,'Pa`Rl', 21, 1, 1, 92.0, 798.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (143,'Trestaka', 21, 1, 3, 31.0, 738.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (144,'Kitab', 21, 1, 3, 159.0, 742.0);

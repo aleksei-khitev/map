@@ -1,8 +1,10 @@
 package ru.akhitev.rp.map.controller;
 
 import de.felixroske.jfxsupport.FXMLController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javax.inject.Inject;
@@ -76,20 +78,11 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    public void setScaleX1() {
-        scalingManager.setScale(1);
-        initialize();
-    }
-
-    @FXML
-    public void setScaleX2() {
-        scalingManager.setScale(2);
-        initialize();
-    }
-
-    @FXML
-    public void setScaleX3() {
-        scalingManager.setScale(3);
+    public void setScale(ActionEvent event) {
+        Node node = (Node) event.getSource() ;
+        String data = (String) node.getUserData();
+        int value = Integer.parseInt(data);
+        scalingManager.setScale(value);
         initialize();
     }
 
@@ -101,7 +94,7 @@ public class MainController implements Initializable {
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, map.getWidth(), map.getHeight());
         gridOfCoordinatesDrawer.draw(map);
-        systemDrawingManager.draw(map);
+        systemDrawingManager.draw(gc);
         addOnMousePressedEvent();
     }
 
