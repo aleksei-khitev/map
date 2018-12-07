@@ -10,6 +10,7 @@ module rp.map {
     requires spring.jdbc;
     requires spring.data.jpa;
     requires spring.tx;
+    requires org.hibernate.orm.core;
 
     opens ru.akhitev.rp.map to javafx.graphics, spring.core, spring.beans, spring.context;
     opens ru.akhitev.rp.map.configs to spring.core, spring.beans, spring.context;

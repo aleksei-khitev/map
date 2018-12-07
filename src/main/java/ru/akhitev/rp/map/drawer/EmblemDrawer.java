@@ -8,6 +8,7 @@ import ru.akhitev.rp.map.entity.StarSystem;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.net.URL;
 
 @Service
 public class EmblemDrawer {
@@ -24,10 +25,6 @@ public class EmblemDrawer {
     }
 
     private void drawIcon(GraphicsContext graphicsContext2D, StarSystem starSystem, String image, int horisontalIndent) {
-        try {
-            graphicsContext2D.drawImage(new Image(new FileInputStream(image)), horisontalIndent, 0,80,80);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        graphicsContext2D.drawImage(new Image(EmblemDrawer.class.getResourceAsStream("/" + image)), horisontalIndent, 0,80,80);
     }
 }
