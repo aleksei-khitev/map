@@ -1,16 +1,17 @@
 package ru.akhitev.rp.map.controller;
 
-import de.felixroske.jfxsupport.FXMLController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javax.inject.Inject;
 
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ru.akhitev.rp.map.drawer.ScalingManager;
 import ru.akhitev.rp.map.drawer.EmblemDrawer;
 import ru.akhitev.rp.map.drawer.GridOfCoordinatesDrawer;
@@ -21,12 +22,10 @@ import ru.akhitev.rp.map.hyperspace.VortexSpeedCalculator;
 import ru.akhitev.rp.map.repository.StarSystemRepository;
 import ru.akhitev.rp.map.router.Router;
 
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 
-@FXMLController
-public class MainController implements Initializable {
+@Component
+public class MainController extends AbstractController{
     private static final Integer MAP_WIDTH = 2000;
     private static final Integer MAP_HEIGHT = 1000;
 
@@ -45,55 +44,48 @@ public class MainController implements Initializable {
     @FXML
     private ToggleButton routeButton;
 
-    @Inject
-    private StarSystemRepository starSystemRepository;
+    private final StarSystemRepository starSystemRepository;
 
-    @Inject
-    private GridOfCoordinatesDrawer gridOfCoordinatesDrawer;
+    private final GridOfCoordinatesDrawer gridOfCoordinatesDrawer;
 
-    @Inject
-    private EmblemDrawer emblemDrawer;
+    private final EmblemDrawer emblemDrawer;
 
-    @Inject
-    private StarSystemDrawingManager systemDrawingManager;
+    private final StarSystemDrawingManager systemDrawingManager;
 
-    @Inject
-    private ScalingManager scalingManager;
+    private final ScalingManager scalingManager;
 
-    @Inject
-    private Router router;
+    private final Router router;
 
-    @Inject
-    private VortexSpeedCalculator vortexSpeedCalculator;
+    private final VortexSpeedCalculator vortexSpeedCalculator;
 
-    @Inject
-    private EmpireLightSpeedCalculator empireLightSpeedCalculator;
+    private final EmpireLightSpeedCalculator empireLightSpeedCalculator;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    @Autowired
+    public MainController(StarSystemRepository starSystemRepository, GridOfCoordinatesDrawer gridOfCoordinatesDrawer, EmblemDrawer emblemDrawer, StarSystemDrawingManager systemDrawingManager, ScalingManager scalingManager, Router router, VortexSpeedCalculator vortexSpeedCalculator, EmpireLightSpeedCalculator empireLightSpeedCalculator) {
+        this.starSystemRepository = starSystemRepository;
+        this.gridOfCoordinatesDrawer = gridOfCoordinatesDrawer;
+        this.emblemDrawer = emblemDrawer;
+        this.systemDrawingManager = systemDrawingManager;
+        this.scalingManager = scalingManager;
+        this.router = router;
+        this.vortexSpeedCalculator = vortexSpeedCalculator;
+        this.empireLightSpeedCalculator = empireLightSpeedCalculator;
         scalingManager.setScale(1);
-        initialize();
+        //initialize();
+
     }
+
 
     @FXML
-    public void setScaleX1() {
-        scalingManager.setScale(1);
+    public void setScale(ActionEvent event) {
+        Node node = (Node) event.getSource() ;
+        String data = (String) node.getUserData();
+        int value = Integer.parseInt(data);
+        scalingManager.setScale(value);
         initialize();
     }
 
-    @FXML
-    public void setScaleX2() {
-        scalingManager.setScale(2);
-        initialize();
-    }
-
-    @FXML
-    public void setScaleX3() {
-        scalingManager.setScale(3);
-        initialize();
-    }
-
-    private void initialize() {
+    public void initialize() {
         clearMap();
         map.setWidth(MAP_WIDTH * scalingManager.getScale());
         map.setHeight(MAP_HEIGHT * scalingManager.getScale());
@@ -101,7 +93,7 @@ public class MainController implements Initializable {
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, map.getWidth(), map.getHeight());
         gridOfCoordinatesDrawer.draw(map);
-        systemDrawingManager.draw(map);
+        systemDrawingManager.draw(gc);
         addOnMousePressedEvent();
     }
 

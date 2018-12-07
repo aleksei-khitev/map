@@ -1,7 +1,5 @@
 package ru.akhitev.rp.map.entity;
 
-import lombok.NonNull;
-
 import javax.persistence.*;
 
 @Entity
@@ -13,26 +11,21 @@ public class StarSystem {
     private Integer id;
 
     @Column(name = "name", nullable = false)
-    @NonNull
     private String name;
 
     @ManyToOne @JoinColumn(name = "statehood_id", nullable = false)
-    @NonNull
     private StateHood statehood;
 
     @ManyToOne @JoinColumn(name = "super_statehood_id")
     private SuperStateHood superStatehood;
 
     @Column(name = "system_importance", nullable = false)
-    @NonNull
     private StarSystemImportance systemImportance;
 
     @Column(name = "coordinateX", nullable = false)
-    @NonNull
     private Double coordinateX;
 
     @Column(name = "coordinateY", nullable = false)
-    @NonNull
     private Double coordinateY;
 
     public Integer getId() {

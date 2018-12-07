@@ -2,7 +2,6 @@ package ru.akhitev.rp.map.repository;
 
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import ru.akhitev.rp.map.entity.StarSystem;
 
 import javax.persistence.EntityManager;
@@ -11,7 +10,6 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-@Transactional(readOnly = true)
 public class StarSystemRepositoryCustomImpl implements StarSystemRepositoryCustom {
 
     @PersistenceContext

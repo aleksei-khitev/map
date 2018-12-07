@@ -1,18 +1,18 @@
 package ru.akhitev.rp.map.router;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.akhitev.rp.map.drawer.ScalingManager;
 
-import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
-@Named
+@Service
 public class Router {
     private static final double LIGHT_YEARS_IN_ONE_PIXEL = 7.9d;
     private List<Point> points;
 
-    @Inject
+    @Autowired
     private ScalingManager scalingManager;
 
     public void startRoute(double x, double y) {

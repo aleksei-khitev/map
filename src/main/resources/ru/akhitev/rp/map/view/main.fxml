@@ -30,24 +30,24 @@
                             <children>
                                 <TextArea fx:id="objectInfo" editable="false" focusTraversable="false" prefHeight="400.0" prefWidth="308.0" wrapText="true"/>
                                 <Canvas fx:id="emblems" width="160" height="80" />
-                                    <HBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
-                                        <fx:define>
-                                            <ToggleGroup fx:id="mapPointerGroup"/>
-                                        </fx:define>
-                                        <children>
-                                            <ToggleButton fx:id="infoButton" text="Информация" toggleGroup="$mapPointerGroup"/>
-                                            <ToggleButton fx:id="routeButton" text="Маршрут" toggleGroup="$mapPointerGroup" />
-                                        </children>
-                                    </HBox>
+                                <HBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
+                                    <fx:define>
+                                        <ToggleGroup fx:id="mapPointerGroup"/>
+                                    </fx:define>
+                                    <children>
+                                        <ToggleButton fx:id="infoButton" text="Информация" toggleGroup="$mapPointerGroup"/>
+                                        <ToggleButton fx:id="routeButton" text="Маршрут" toggleGroup="$mapPointerGroup" />
+                                    </children>
+                                </HBox>
                             </children>
                         </VBox>
                     </children>
                 </HBox>
                 <HBox xmlns:fx="http://javafx.com/fxml">
                     <children>
-                        <Button text="Масштаб X1" onAction="#setScaleX1"/>
-                        <Button text="Масштаб X2" onAction="#setScaleX2"/>
-                        <Button text="Масштаб X3" onAction="#setScaleX3"/>
+                        <Button text="Масштаб X1" onAction="#setScale" userData="1"/>
+                        <Button text="Масштаб X2" onAction="#setScale" userData="2"/>
+                        <Button text="Масштаб X3" onAction="#setScale" userData="3"/>
                     </children>
                 </HBox>
             </children>

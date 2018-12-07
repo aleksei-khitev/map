@@ -1,8 +1,8 @@
 package ru.akhitev.rp.map.drawer;
 
-import javax.inject.Named;
+import org.springframework.stereotype.Service;
 
-@Named
+@Service
 public class ScalingManager {
     private Integer scale;
 

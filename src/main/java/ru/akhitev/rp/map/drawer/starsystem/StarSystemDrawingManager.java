@@ -2,26 +2,25 @@ package ru.akhitev.rp.map.drawer.starsystem;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.akhitev.rp.map.drawer.ScalingManager;
 import ru.akhitev.rp.map.entity.StarSystem;
 import ru.akhitev.rp.map.repository.StarSystemRepository;
 
-import javax.inject.Inject;
-import javax.inject.Named;
 
-@Named
+@Service
 public class StarSystemDrawingManager {
-    @Inject
+    @Autowired
     private StarSystemRepository starSystemRepository;
-    @Inject
+    @Autowired
     private ScalingManager scalingManager;
 
-    public void draw(Canvas map) {
-        starSystemRepository.findAll().forEach(starSystem -> {drawSystem(map, starSystem);});
+    public void draw(GraphicsContext graphicsContext2D) {
+        starSystemRepository.findAll().forEach(starSystem -> {drawSystem(graphicsContext2D, starSystem);});
     }
 
-    private void drawSystem(Canvas map, StarSystem starSystem) {
-        GraphicsContext graphicsContext2D = map.getGraphicsContext2D();
+    private void drawSystem(GraphicsContext graphicsContext2D, StarSystem starSystem) {
         AbstractStarSystemDrawer systemDrawer;
         switch (starSystem.getSystemImportance()) {
             case SUPER_STATEHOOD_CAPITAL:

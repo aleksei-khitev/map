@@ -3,13 +3,13 @@ package ru.akhitev.rp.map.drawer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import org.springframework.stereotype.Service;
 import ru.akhitev.rp.map.entity.StarSystem;
 
-import javax.inject.Named;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-@Named
+@Service
 public class EmblemDrawer {
     public void drawEmblems(Canvas map, StarSystem starSystem) {
         int horisontalIndent = 0;

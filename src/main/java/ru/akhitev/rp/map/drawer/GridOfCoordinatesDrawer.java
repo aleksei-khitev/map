@@ -3,16 +3,16 @@ package ru.akhitev.rp.map.drawer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
-import javax.inject.Named;
 
-@Named
+@Service
 public class GridOfCoordinatesDrawer implements Drawer{
     private static final Integer SIZE_OF_CELL = 100;
     private static final Double LINE_WIDTH = 0.5;
 
-    @Inject
+    @Autowired
     private ScalingManager scalingManager;
 
     public void draw(Canvas map) {

@@ -1,7 +1,5 @@
 package ru.akhitev.rp.map.entity;
 
-import javafx.scene.paint.Color;
-import lombok.NonNull;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -17,7 +15,6 @@ public class StateHood {
     private Integer id;
 
     @Column(name = "name", nullable = false)
-    @NonNull
     private String name;
 
     @Column(name = "image")
