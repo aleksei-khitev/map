@@ -191,3 +191,14 @@ INSERT INTO State_Hood(id, name, image, color) VALUES (21,'Yolu Confederation', 
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (142,'Pa`Rl', 21, 1, 1, 92.0, 798.0);
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (143,'Trestaka', 21, 1, 3, 31.0, 738.0);
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (144,'Kitab', 21, 1, 3, 159.0, 742.0);
+
+INSERT INTO State_Hood(id, name, image, color) VALUES (22,'Terran Confederation', 'images/statehood/terran.jpg', 'YELLOW');
+
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (145,'<1>', 22, 0, 3, 368.0, 614.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (146,'<2>', 22, 0, 3, 378.0, 629.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (147,'<3>', 22, 0, 3, 328.0, 618.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (148,'<4>', 22, 0, 3, 338.0, 632.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (149,'<5>', 22, 0, 3, 315.0, 638.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (150,'<6>', 22, 0, 3, 273.0, 642.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (151,'<7>', 22, 0, 3, 293.0, 657.0);
+-- INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (152,'<8>', 0, 0, 3, 393.0, 657.0);

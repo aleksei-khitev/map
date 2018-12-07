@@ -48,7 +48,6 @@ task copyJar(type: Copy){
 }
 
 task generateLaunchers(){
-    dependsOn 'copyJar'
     println "${buildDir}/rp.map/bin/launcher.sh"
     File guiLauncher = new File("${buildDir}/rp.map/bin/launcher.sh")
     guiLauncher.createNewFile()
