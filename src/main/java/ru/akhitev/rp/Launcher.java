@@ -1,11 +1,11 @@
-package ru.akhitev.rp.map;
+package ru.akhitev.rp;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import ru.akhitev.rp.map.configs.SpringConfig;
-import ru.akhitev.rp.map.configs.SpringStageLoader;
-import ru.akhitev.rp.map.controller.MainController;
+import ru.akhitev.rp.conf.SpringConfig;
+import ru.akhitev.rp.conf.SpringStageLoader;
+import ru.akhitev.rp.map.controller.MapController;
 
 import java.io.IOException;
 
@@ -23,8 +23,6 @@ public class Launcher extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Stage mainStage = SpringStageLoader.loadMain();
-        MainController controller = context.getBean(MainController.class);
-        controller.initialize();
         mainStage.show();
     }
 

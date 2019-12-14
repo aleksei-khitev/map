@@ -1,24 +1,30 @@
-package ru.akhitev.rp.map.configs;
+package ru.akhitev.rp.conf;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import ru.akhitev.rp.map.Launcher;
+import ru.akhitev.rp.Launcher;
 
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import ru.akhitev.rp.fleet.fleet_node.db.entity.FleetNode;
+import ru.akhitev.rp.fleet.ship.db.entity.Ship;
+import ru.akhitev.rp.fleet.ship.db.repo.ShipRepository;
+import ru.akhitev.rp.fleet.weapon.db.entity.Weapon;
 import ru.akhitev.rp.map.entity.StarSystem;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import ru.akhitev.rp.map.repository.StarSystemRepository;
+
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableJpaRepositories("ru.akhitev.rp.map.repository")
+@EnableJpaRepositories(basePackageClasses = {StarSystemRepository.class, ShipRepository.class})
 @EnableTransactionManagement
 @ComponentScan(basePackageClasses={Launcher.class})
 public class SpringConfig {
@@ -42,13 +48,15 @@ public class SpringConfig {
         vendorAdapter.setGenerateDdl(true);
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan(StarSystem.class.getPackage().getName());
+        factory.setPackagesToScan(StarSystem.class.getPackage().getName(),
+                Ship.class.getPackage().getName(),
+                Weapon.class.getPackage().getName(),
+                FleetNode.class.getPackage().getName());
         factory.setDataSource(dataSource());
         factory.setJpaProperties(hibernateProperties());
         factory.afterPropertiesSet();
         return factory.getObject();
     }
-
 
     @Bean
     public JpaTransactionManager transactionManager() {

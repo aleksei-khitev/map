@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.akhitev.rp.conf.AbstractController;
 import ru.akhitev.rp.map.drawer.ScalingManager;
 import ru.akhitev.rp.map.drawer.EmblemDrawer;
 import ru.akhitev.rp.map.drawer.GridOfCoordinatesDrawer;
@@ -25,7 +26,7 @@ import ru.akhitev.rp.map.router.Router;
 import java.util.List;
 
 @Component
-public class MainController extends AbstractController{
+public class MapController extends AbstractController {
     private static final Integer MAP_WIDTH = 2000;
     private static final Integer MAP_HEIGHT = 1000;
 
@@ -61,7 +62,7 @@ public class MainController extends AbstractController{
     private final EmpireLightSpeedCalculator empireLightSpeedCalculator;
 
     @Autowired
-    public MainController(StarSystemRepository starSystemRepository, GridOfCoordinatesDrawer gridOfCoordinatesDrawer, EmblemDrawer emblemDrawer, StarSystemDrawingManager systemDrawingManager, ScalingManager scalingManager, Router router, VortexSpeedCalculator vortexSpeedCalculator, EmpireLightSpeedCalculator empireLightSpeedCalculator) {
+    public MapController(StarSystemRepository starSystemRepository, GridOfCoordinatesDrawer gridOfCoordinatesDrawer, EmblemDrawer emblemDrawer, StarSystemDrawingManager systemDrawingManager, ScalingManager scalingManager, Router router, VortexSpeedCalculator vortexSpeedCalculator, EmpireLightSpeedCalculator empireLightSpeedCalculator) {
         this.starSystemRepository = starSystemRepository;
         this.gridOfCoordinatesDrawer = gridOfCoordinatesDrawer;
         this.emblemDrawer = emblemDrawer;
@@ -85,6 +86,7 @@ public class MainController extends AbstractController{
         initialize();
     }
 
+    @FXML
     public void initialize() {
         clearMap();
         map.setWidth(MAP_WIDTH * scalingManager.getScale());

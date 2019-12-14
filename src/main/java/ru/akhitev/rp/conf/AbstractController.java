@@ -1,4 +1,4 @@
-package ru.akhitev.rp.map.controller;
+package ru.akhitev.rp.conf;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

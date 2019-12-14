@@ -1,4 +1,4 @@
-package ru.akhitev.rp.map.configs;
+package ru.akhitev.rp.conf;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +19,7 @@ public class SpringStageLoader implements ApplicationContextAware {
 
     private static String staticTitle;
 
-    private static final String FXML_DIR = "/ru/akhitev/rp/map/view/";
+    private static final String FXML_DIR = "/ru/akhitev/rp/";
     private static final String MAIN_STAGE = "main";
 
     /**
