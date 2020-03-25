@@ -1,33 +1,35 @@
-package ru.akhitev.rp.fleet.ship.db.entity;
-
-import ru.akhitev.rp.fleet.weapon.db.entity.Weapon;
+package ru.akhitev.rp.fleet.entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Ship_weapon_mapping")
-@SequenceGenerator(name = "seq", initialValue = 20)
-public class ShipWeaponMapping {
+@Table(name = "ship_weapon")
+public class ShipWeapon {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "ship_id")
-    private Ship ship;
+    @JoinColumn(name = "ship_id", insertable = false, updatable = false)
+    public Ship ship;
 
     @ManyToOne
-    @JoinColumn(name = "weapon_id")
+    @JoinColumn(name = "weapon_id", insertable = false, updatable = false)
     private Weapon weapon;
 
-    @Column(name = "weapon_count", nullable = false)
+    @Column(name = "weapon_count")
     private Integer weaponCount;
 
-    public Integer getId() {
+    @Version
+    @Column(name = "version")
+    private int version;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -53,5 +55,10 @@ public class ShipWeaponMapping {
 
     public void setWeaponCount(Integer weaponCount) {
         this.weaponCount = weaponCount;
+    }
+
+    @Override
+    public String toString() {
+        return weapon + " x " + weaponCount;
     }
 }

@@ -1,70 +1,11 @@
 plugins {
-    id 'application'
-    id 'idea'
-    id 'org.openjfx.javafxplugin' version '0.0.5'
+    id 'java'
 }
 
-repositories {
-    mavenCentral()
-}
+group 'ru.akhitev'
+version '1.0-SNAPSHOT'
 
-javafx {
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
-}
-
-mainClassName = "$moduleName/ru.akhitev.rp.map.Launcher"
-
-def java_home = "/usr/lib/jvm/jdk-11.0.1"
-def fx_jmods = "/opt/java/javafx-jmods-11.0.1"
-
-jar {
-    manifest {
-        attributes "Main-Class": "ru.akhitev.rp.map.Launcher"
-    }
-
-    from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-}
-
-task jlink(type: Exec) {
-    dependsOn 'clean'
-    dependsOn 'jar'
-    workingDir 'build'
-
-    commandLine "${java_home}/bin/jlink", '--module-path', "${java_home}/jmods:/${fx_jmods}",
-            '--add-modules', 'java.xml,java.logging,java.base,java.sql,javafx.fxml,javafx.controls,javafx.graphics,java.naming,java.instrument',
-            '--output', "${moduleName}"
-}
-
-task copyJar(type: Copy){
-    dependsOn 'clean'
-    dependsOn 'jar'
-    dependsOn 'jlink'
-    println "${buildDir}/libs/${project.name}.jar"
-    println "${buildDir}/rp.map/bin/map.jar"
-    from "${buildDir}/libs/${project.name}.jar"
-    into "${buildDir}/rp.map/bin"
-}
-
-task generateLaunchers(){
-    println "${buildDir}/rp.map/bin/launcher.sh"
-    File guiLauncher = new File("${buildDir}/rp.map/bin/launcher.sh")
-    guiLauncher.createNewFile()
-    guiLauncher.write("#!/bin/bash\n")
-    guiLauncher.write("./java -jar ${project.name}.jar map.jar")
-    guiLauncher.setExecutable(true, false)
-}
-
-task makeZip(type: Zip) {
-    dependsOn 'clean'
-    dependsOn 'jar'
-    dependsOn 'jlink'
-    dependsOn 'copyJar'
-    dependsOn 'generateLaunchers'
-    from "${buildDir}/rp.map"
-    archiveName "${buildDir}/rp_map.zip"
-}
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -72,12 +13,63 @@ repositories {
     maven { url "https://repo.spring.io/milestone" }
 }
 
+ext {
+    springVersion = '5.2.5.RELEASE'
+    springDataVersion = '2.2.5.RELEASE'
+    h2Version = '1.4.194'
+
+    hibernateVersion = '5.4.12.Final'
+    hibernateValidatorVersion = '6.1.2.Final'
+
+    slf4jVersion = '1.7.30'
+    logbackVersion = '1.2.3'
+
+    spring = [
+            context     : "org.springframework:spring-context:$springVersion",
+            jdbc        : "org.springframework:spring-jdbc:$springVersion", //для jdbc в spring
+            orm         : "org.springframework:spring-orm:$springVersion", // для spring и hibernate (включая hibernateTemplate, LocalSessionFactoryBean, HibernateTransactionManager...)
+            data        : "org.springframework.data:spring-data-jpa:$springDataVersion", // для spring data jpa
+            aspects     : "org.springframework:spring-aspects:$springVersion" // для @EntityListeners в spring data jpa
+    ]
+
+    db = [
+            h2          : "com.h2database:h2:$h2Version" //для h2 базы
+    ]
+
+    hibernate = [
+            em         : "org.hibernate:hibernate-entitymanager:$hibernateVersion", // для hibernate
+            validator  : "org.hibernate:hibernate-validator:$hibernateValidatorVersion"
+    ]
+
+    misc = [
+            slf4jJcl    : "org.slf4j:jcl-over-slf4j:$slf4jVersion", //для логов
+            logback     : "ch.qos.logback:logback-classic:$logbackVersion" //для логов
+    ]
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "ru.akhitev.rp.Launcher"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes "Main-Class": "ru.akhitev.rp.Launcher"
+     }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
 dependencies {
-    compile group: 'org.springframework', name: 'spring-context', version: '5.0.6.RELEASE'
-    compile group: 'org.springframework', name: 'spring-beans', version: '5.0.6.RELEASE'
-    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.1.3.RELEASE'
-    compile group: 'org.springframework', name: 'spring-orm', version: '5.0.6.RELEASE'
-    compile group: 'org.hibernate', name: 'hibernate-core', version: '+'
-    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '+'
-    compile group: 'org.hsqldb', name: 'hsqldb', version: '+'
+    compile spring.context
+    compile spring.data
+    compile spring.orm
+    compile hibernate.em
+    compile hibernate.validator
+    compile db.h2
 }

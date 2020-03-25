@@ -202,28 +202,3 @@ INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_impor
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (150,'<6>', 22, 0, 3, 273.0, 642.0);
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (151,'<7>', 22, 0, 3, 293.0, 657.0);
 -- INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (152,'<8>', 0, 0, 3, 393.0, 657.0);
-
-INSERT INTO Weapon(id, name, damage, range) VALUES (1, 'Laser cannon turret', 6, 'SHORT');
-INSERT INTO Weapon(id, name, damage, range) VALUES (7, 'Quad laser cannon turret', 6, 'SHORT');
-
-INSERT INTO Weapon(id, name, damage, range) VALUES (8, 'Turbolaser', 10, 'LONG');
-INSERT INTO Weapon(id, name, damage, range) VALUES (2, 'Twin light turbolaser turret', 9, 'MEDIUM');
-INSERT INTO Weapon(id, name, damage, range) VALUES (3, 'Twin medium turbolaser battery', 10, 'LONG');
-INSERT INTO Weapon(id, name, damage, range) VALUES (4, 'Twin heavy turbolaser turret', 11, 'LONG');
-INSERT INTO Weapon(id, name, damage, range) VALUES (5, 'Quad medium turbolaser battery', 10, 'LONG');
-INSERT INTO Weapon(id, name, damage, range) VALUES (6, 'Assault concussion missile tube', 7, 'SHORT');
-
-INSERT INTO Ship(id, name, length, crew, minimal_crew, troops, cost, image, link) VALUES (1, 'Vigil-class Corvette', 255, 200, null, 200, 3500000, 'Vigil', 'https://starwars.fandom.com/wiki/Vigil-class_corvette#cite_note-AOR_CRB-0');
-INSERT INTO Ship_weapon_mapping(id, ship_id, weapon_id, weapon_count) VALUES (1, 1, 1, 3);
-INSERT INTO Ship_weapon_mapping(id, ship_id, weapon_id, weapon_count) VALUES (2, 1, 2, 3);
-INSERT INTO Ship_weapon_mapping(id, ship_id, weapon_id, weapon_count) VALUES (3, 1, 4, 3);
-
-INSERT INTO Ship(id, name, length, crew, minimal_crew, troops, cost, image, link) VALUES (2, 'Kontos-class Star Frigate', 450, 600, null, 300, null, 'Kontos', 'https://community.fantasyflightgames.com/topic/243600-ship-stats-fractalsponges-imperial-capital-ships/');
-INSERT INTO Ship_weapon_mapping(id, ship_id, weapon_id, weapon_count) VALUES (4, 2, 5, 9);
-INSERT INTO Ship_weapon_mapping(id, ship_id, weapon_id, weapon_count) VALUES (5, 2, 3, 2);
-INSERT INTO Ship_weapon_mapping(id, ship_id, weapon_id, weapon_count) VALUES (6, 2, 2, 12);
-INSERT INTO Ship_weapon_mapping(id, ship_id, weapon_id, weapon_count) VALUES (7, 2, 6, 12);
-
-INSERT INTO Ship(id, name, length, crew, minimal_crew, troops, cost, image, link) VALUES (3, 'Dreadnaught-class heavy cruiser', 600, 16113, 9000, 3000, 7200000, 'Dreadnaught', 'https://starwars.fandom.com/wiki/Dreadnaught-class_heavy_cruiser');
-INSERT INTO Ship_weapon_mapping(id, ship_id, weapon_id, weapon_count) VALUES (8, 3, 5, 20);
-INSERT INTO Ship_weapon_mapping(id, ship_id, weapon_id, weapon_count) VALUES (9, 3, 8, 20);
