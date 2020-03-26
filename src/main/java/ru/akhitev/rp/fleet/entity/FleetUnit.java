@@ -5,6 +5,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "fleet_unit")
@@ -96,9 +97,15 @@ public class FleetUnit {
 
     @Override
     public String toString() {
-        return name + " {"
-                + ((compositionByFleetUnits !=null && compositionByFleetUnits.size() > 0)?"ед. флота: " + compositionByFleetUnits:"" )
-                + ((compositionByShips !=null && compositionByShips.size() > 0)?"корабли: " + compositionByShips:"" )
-                + "}";
+        return name;
+    }
+
+    public String multiLineString() {
+        return name + "\n========\n" +
+                "Минимальное звание для командования: " + minimumCommandRank.getName() + "\n" +
+                "\nСостав:\n-------\n " +
+                ((compositionByFleetUnits !=null && compositionByFleetUnits.size() > 0)?"Единицы флота:\n" + compositionByFleetUnits.stream().map(FleetUnitCompositionByFleetUnits::toString).collect(Collectors.joining("\n")) + "\n":"" ) +
+                ((compositionByShips !=null && compositionByShips.size() > 0)?"Корабли:\n" + compositionByShips.stream().map(FleetUnitCompositionByShips::toString).collect(Collectors.joining("\n")) + "\n":"" ) +
+                ((comments != null)?"\nКомментарии:\n" + comments:"");
     }
 }

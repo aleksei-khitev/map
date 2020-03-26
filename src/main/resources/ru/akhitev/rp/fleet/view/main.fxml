@@ -1,15 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <GridPane hgap="5" vgap="5" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="ru.akhitev.rp.fleet.controller.FleetController"
-            prefHeight="400.0" prefWidth="600.0">
-    <TextArea fx:id="ships" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-    <Button fx:id="show" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+          style="-fx-background-color: grey;" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1800.0">
+    <VBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
+            <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white; -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );">Флот</Label>
+            <HBox>
+                <ComboBox fx:id="fleetUnits"></ComboBox>
+                <Button fx:id="show" text="Выполнить"/>
+            </HBox>
+            <HBox>
+                <TabPane prefHeight="950.0" prefWidth="700.0">
+                    <Tab text="Общая сводка">
+                        <VBox>
+                            <TitledPane text="Стоимость">
+                                <GridPane>
+                                    <Label GridPane.rowIndex="0" GridPane.columnIndex="0">Стоимость кораблей</Label>
+                                    <TextField fx:id="cost" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                </GridPane>
+                            </TitledPane>
+                            <TitledPane text="Примерная численность экипажа (у некоторых кораблей нет данных по ней)" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                                <GridPane>
+                                    <Label GridPane.rowIndex="0" GridPane.columnIndex="0">Полноценный экипаж кораблей, пилоты и наземные силы</Label>
+                                    <TextField fx:id="normalAndAirCraftAndLanding" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                    <Label GridPane.rowIndex="1" GridPane.columnIndex="0">Полноценный экипаж кораблей и пилоты</Label>
+                                    <TextField fx:id="normalAndAirCraft" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                    <Label GridPane.rowIndex="2" GridPane.columnIndex="0">Минмимальный экипаж кораблей и пилоты</Label>
+                                    <TextField fx:id="minimalAndAirCraft" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                                    <Label GridPane.rowIndex="3" GridPane.columnIndex="0">Минмимальный экипаж кораблей без пилотов и сухопутных сил</Label>
+                                    <TextField fx:id="minimalOnly" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                                    <Label GridPane.rowIndex="4" GridPane.columnIndex="0">Только пилоты сил</Label>
+                                    <TextField fx:id="airCraft" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                                    <Label GridPane.rowIndex="5" GridPane.columnIndex="0">Только десант и наземные силы</Label>
+                                    <TextField fx:id="landingSoldiersAndCrew" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                                </GridPane>
+                            </TitledPane>
+                            <TitledPane text="Корабли">
+                                <GridPane>
+                                    <Label GridPane.rowIndex="0" GridPane.columnIndex="0">Корабли менее 500 метров</Label>
+                                    <TextField fx:id="smallShips" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                    <Label GridPane.rowIndex="1" GridPane.columnIndex="0">Корабли от 500 метров до километра</Label>
+                                    <TextField fx:id="mediumShips" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                    <Label GridPane.rowIndex="2" GridPane.columnIndex="0">Корабли более километра</Label>
+                                    <TextField fx:id="bigShips" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                                </GridPane>
+                            </TitledPane>
+                        </VBox>
+                    </Tab>
+                    <Tab text="Структура">
+                        <TitledPane>
+                                <TreeView fx:id="structure" />
+                        </TitledPane>
+                    </Tab>
+                    <Tab text="Подроная сводка">
+                        <VBox>
+                            <TitledPane text="Корабли">
+                                <TableView fx:id="shipsCount" />
+                            </TitledPane>
+                            <TitledPane text="Малые летательные аппараты">
+                                <TableView fx:id="smallAirCraftCount" />
+                            </TitledPane>
+                            <TitledPane text="Десант и наземные силы">
+                                <TableView fx:id="landingForcesCount" />
+                            </TitledPane>
+                        </VBox>
+                    </Tab>
+                </TabPane>
+                <TitledPane text="Детали" prefWidth="800.0" prefHeight="600.0">
+                    <TextArea fx:id="details" />
+                </TitledPane>
+            </HBox>
+    </VBox>
 </GridPane>

@@ -3,7 +3,9 @@ package ru.akhitev.rp.fleet.service;
 import org.springframework.stereotype.Service;
 import ru.akhitev.rp.fleet.entity.*;
 import ru.akhitev.rp.fleet.util.FleetUnitPrinterTask;
+import ru.akhitev.rp.fleet.util.FleetUnitStructureBuildingTask;
 import ru.akhitev.rp.fleet.util.ShipsCounterTask;
+import ru.akhitev.rp.fleet.vo.FleetUnitSummary;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +14,24 @@ import java.util.stream.Collectors;
 
 @Service
 class ReportService {
+    FleetUnitSummary prepareSummary(FleetUnit fleetUnit) {
+        FleetUnitSummary.Builder builder = new FleetUnitSummary.Builder();
+        builder.structure(new ForkJoinPool().invoke(new FleetUnitStructureBuildingTask(fleetUnit, 1)));
+        Map<Ship, Integer> shipCounts = shipsWithCounts(fleetUnit);
+        builder.shipCounts(shipCounts);
+        if (shipCounts != null && shipCounts.size() > 0) {
+            Map<LandForce, Integer> landForcesWithCounts = landForcesWithCounts(shipCounts);
+            builder.smallAircraftsWithCounts(smallAircraftsWithCounts(shipCounts))
+                .landForcesWithCounts(landForcesWithCounts)
+                .cost(cost(shipCounts))
+                .minimalShipsCrew(minimalCrew(shipCounts))
+                .normalShipsCrew(normalCrew(shipCounts))
+                .landingSoldiersAndCrew(landingSoldiersAndCrew(landForcesWithCounts))
+                .smallAircraftCrew(smallAircraftCrew(shipCounts));
+        }
+        return builder.build();
+    }
+
     String prepare(FleetUnit fleetUnit) {
         StringBuilder reportBuilder = new StringBuilder();
         String composition = compositionOfFleetUnit(fleetUnit);
