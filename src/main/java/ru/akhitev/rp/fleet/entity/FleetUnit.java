@@ -101,11 +101,17 @@ public class FleetUnit {
     }
 
     public String multiLineString() {
-        return name + "\n========\n" +
-                "Минимальное звание для командования: " + minimumCommandRank.getName() + "\n" +
-                "\nСостав:\n-------\n " +
-                ((compositionByFleetUnits !=null && compositionByFleetUnits.size() > 0)?"Единицы флота:\n" + compositionByFleetUnits.stream().map(FleetUnitCompositionByFleetUnits::toString).collect(Collectors.joining("\n")) + "\n":"" ) +
-                ((compositionByShips !=null && compositionByShips.size() > 0)?"Корабли:\n" + compositionByShips.stream().map(FleetUnitCompositionByShips::toString).collect(Collectors.joining("\n")) + "\n":"" ) +
-                ((comments != null)?"\nКомментарии:\n" + comments:"");
+        return "<h3>" + name + "</h3>\n<hr/>" +
+                "<b>Минимальное звание для командования</b>: " + minimumCommandRank.getName() + "<br/>" +
+                "<h4>Состав:</h4>" +
+                ((compositionByFleetUnits !=null && compositionByFleetUnits.size() > 0)?"<h5>Единицы флота:</h5>" + compositionByFleetUnits.stream()
+                        .map(FleetUnitCompositionByFleetUnits::toString)
+                        .map(s -> "<li>" + s + "</li>")
+                        .collect(Collectors.joining()) + "</ul>":"" ) +
+                ((compositionByShips !=null && compositionByShips.size() > 0)?"<h5>Корабли:</h5><ul>" + compositionByShips.stream()
+                        .map(FleetUnitCompositionByShips::toString)
+                        .map(s -> "<li>" + s + "</li>")
+                        .collect(Collectors.joining()) + "</ul>":"" ) +
+                ((comments != null)?"<h4>Комментарии:</h4>" + comments:"");
     }
 }

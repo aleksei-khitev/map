@@ -2,14 +2,12 @@ package ru.akhitev.rp.fleet.controller;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Callback;
+import javafx.scene.web.WebView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.akhitev.rp.conf.AbstractController;
@@ -18,10 +16,7 @@ import ru.akhitev.rp.fleet.service.FleetService;
 import ru.akhitev.rp.fleet.vo.FleetUnitStructure;
 import ru.akhitev.rp.fleet.vo.FleetUnitSummary;
 
-import java.text.NumberFormat;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Component
 public class FleetController extends AbstractController {
@@ -37,7 +32,7 @@ public class FleetController extends AbstractController {
     public TextField smallShips;
     public TextField mediumShips;
     public TextField bigShips;
-    public TextArea details;
+    public WebView details;
     public TreeView<FleetUnitStructure> structure;
     public TableView<Map.Entry<Ship, Integer>> shipsCount;
     public TableView<Map.Entry<SmallAircraft, Integer>> smallAirCraftCount;
@@ -50,7 +45,10 @@ public class FleetController extends AbstractController {
     @FXML
     public void initialize() {
         units = fleetService.findAllFleetsInShort();
-        units.stream().map(FleetUnitShort::getName).forEach(fleetUnits.getItems()::add);
+        units.stream()
+                .sorted(Comparator.comparing(FleetUnitShort::level).reversed().thenComparing(FleetUnitShort::getName))
+                .map(FleetUnitShort::getName)
+                .forEach(fleetUnits.getItems()::add);
         show.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             String selectedItem = fleetUnits.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
@@ -69,6 +67,7 @@ public class FleetController extends AbstractController {
                     summary.getFilteredShipsCount(e -> e.getKey().getSize().getLength() >= 1000).ifPresent(count -> bigShips.setText(String.valueOf(count)));
                     structure.setRoot(summary.getStructure());
                     ObservableList<Map.Entry<Ship, Integer>> shipsCountItems = FXCollections.observableArrayList(summary.getShipCounts().entrySet());
+                    Collections.sort(shipsCountItems, Comparator.comparing((Map.Entry<Ship, Integer> e) -> e.getKey().getSize().getLength()).reversed());
                     shipsCount.setItems(shipsCountItems);
                     ObservableList<Map.Entry<SmallAircraft, Integer>> smallAircraftsWithCountsItems = FXCollections.observableArrayList(summary.getSmallAircraftsWithCounts().entrySet());
                     smallAirCraftCount.setItems(smallAircraftsWithCountsItems);
@@ -80,22 +79,34 @@ public class FleetController extends AbstractController {
         structure.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             FleetUnitStructure fleetUnitStructure = newValue.getValue();
             Optional<FleetUnit> unit = fleetService.getFleetUnitById(fleetUnitStructure.getId());
-            unit.ifPresent(u -> details.setText(u.multiLineString()));
+            unit.ifPresent(u -> details.getEngine().loadContent(u.multiLineString()));
         });
         TableColumn<Map.Entry<Ship, Integer>, String> shipColumn = new TableColumn<>("Класс корабля");
         shipColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getKey().getShipClass()));
         TableColumn<Map.Entry<Ship, Integer>, Integer> shipCount = new TableColumn<>("Количество");
         shipCount.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().getValue()).asObject());
         shipsCount.getColumns().addAll(shipColumn, shipCount);
+        shipsCount.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+            Ship ship = newValue.getKey();
+            details.getEngine().loadContent(ship.toHtmlString());
+        });
         TableColumn<Map.Entry<SmallAircraft, Integer>, String> smallAirCraftColumn = new TableColumn<>("Малый аппарат");
         smallAirCraftColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getKey().getName()));
         TableColumn<Map.Entry<SmallAircraft, Integer>, Integer> airCraftCount = new TableColumn<>("Количество");
         airCraftCount.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().getValue()).asObject());
         smallAirCraftCount.getColumns().addAll(smallAirCraftColumn, airCraftCount);
+        smallAirCraftCount.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+            SmallAircraft aircraft = newValue.getKey();
+            details.getEngine().loadContent(aircraft.toHtmlString());
+        });
         TableColumn<Map.Entry<LandForce, Integer>, String> landingForceColumn = new TableColumn<>("Единицы");
         landingForceColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getKey().getName()));
         TableColumn<Map.Entry<LandForce, Integer>, Integer> landingForceCount = new TableColumn<>("Количество");
         landingForceCount.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().getValue()).asObject());
         landingForcesCount.getColumns().addAll(landingForceColumn, landingForceCount);
+        landingForcesCount.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+            LandForce landForce = newValue.getKey();
+            details.getEngine().loadContent(landForce.toHtmlString());
+        });
     }
 }

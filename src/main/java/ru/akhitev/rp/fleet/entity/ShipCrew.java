@@ -54,4 +54,10 @@ public class ShipCrew {
                 ((normal != null)?", полноценный: " + normal:"") +
                 '}';
     }
+
+    public String toHtmlString() {
+        return "<h4>Экипаж</h4>" +
+                ((minimal != null)?"<b>минимальный:</b> " + minimal + "<br/>":"") +
+                ((normal != null)?"<b>полноценный:</b> " + normal + "<br/>":"");
+    }
 }

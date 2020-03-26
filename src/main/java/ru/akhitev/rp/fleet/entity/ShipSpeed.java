@@ -78,4 +78,12 @@ public class ShipSpeed {
                 ((backupHyperDriveClass != null)?",  класс резервного гиппердрайва: " + backupHyperDriveClass:"") +
                 '}';
     }
+
+    public String toHtmlString() {
+        return "<h4>Скорость</h4>" +
+                ((spaceSpeed != null)?"<b>в космосе:</b> " + spaceSpeed + "<br/>":"") +
+                ((atmosphereSpeed != null)?"<b>в атмосфере:</b> " + atmosphereSpeed + "<br/>":"") +
+                ((mainHyperDriveClass != null)?"<b>класс основного гиппердрайва:</b> " + mainHyperDriveClass + "<br/>":"") +
+                ((backupHyperDriveClass != null)?"<b>класс резервного гиппердрайва:</b> " + backupHyperDriveClass + "<br/>":"");
+    }
 }

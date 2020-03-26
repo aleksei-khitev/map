@@ -65,7 +65,7 @@ class ReportService {
             .append("\nполноценная (без учета пилотов, солдат) ").append(normalCrew)
             .append("\nсолдаты, штурмовики, персонал наземных сил ").append(landingSoldiersAndCrew)
             .append("\nпилоты летательных аппаратов ").append(smallAircraftCrew);
-            reportBuilder.append("\n-------\nИнформация о классах кораблей\n").append(shipCounts.keySet().stream().map(Ship::toMultiLineString).collect(Collectors.joining("\n\n")));
+            reportBuilder.append("\n-------\nИнформация о классах кораблей\n").append(shipCounts.keySet().stream().map(Ship::toHtmlString).collect(Collectors.joining("\n\n")));
         }
         return reportBuilder.toString();
     }

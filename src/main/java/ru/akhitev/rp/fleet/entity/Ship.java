@@ -5,6 +5,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "ship")
@@ -194,18 +195,19 @@ public class Ship {
         return type + " класса " + shipClass;
     }
 
-    public String toMultiLineString() {
-        return type + " класса " + shipClass + "\n" +
-                "стоимость " + cost + "\n" +
-                "автономность (в днях) " + autonomyInDays + "\n" +
-                "производитель " + producer + "\n" +
-                size + "\n" +
-                crew + "\n" +
-                speed + "\n" +
-                defence + "\n" +
-                weapons + "\n" +
-                ((hangar.size() > 0)?hangar + "\n":"") +
-                ((landingDeck.size() > 0)?landingDeck + "\n":"") +
-                link;
+    public String toHtmlString() {
+        return "<h3>" + type + " класса " + shipClass + "</h3>\n<hr/>" +
+                "<b>Стоимость</b> " + cost + "<br/>" +
+                "<b>Автономность (в днях)</b> " + autonomyInDays + "<br/>" +
+                "<b>Производитель</b> " + producer + "<br/>" +
+                size.toHtmlString() +
+                crew.toHtmlString() +
+                speed.toHtmlString() +
+                defence.toHtmlString() +
+                "<h4>Вооружение</h4><ul>" +
+                weapons.stream().map(w -> "<li>" + w.toString() + "</li>").collect(Collectors.joining()) + "</ul>" +
+                ((hangar.size() > 0)?"<h4>Лётная палуба</h4><ul>" + hangar.stream().map(w -> "<li>" + w.toString() + "</li>").collect(Collectors.joining()) + "</ul>":"") +
+                ((landingDeck.size() > 0)?"<h4>Десантаня палуба</h4><ul>" + landingDeck.stream().map(w -> "<li>" + w.toString() + "</li>").collect(Collectors.joining()) + "</ul>":"") +
+                "<br/><a href='" + link + "'>Ссылка на источник данных</a>";
     }
 }

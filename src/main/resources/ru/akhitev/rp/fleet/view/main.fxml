@@ -3,9 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.web.WebView?>
 <GridPane hgap="5" vgap="5" xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ru.akhitev.rp.fleet.controller.FleetController"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="ru.akhitev.rp.fleet.controller.FleetController"
           style="-fx-background-color: grey;" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1800.0">
     <VBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
             <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white; -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );">Флот</Label>
@@ -71,7 +72,7 @@
                     </Tab>
                 </TabPane>
                 <TitledPane text="Детали" prefWidth="800.0" prefHeight="600.0">
-                    <TextArea fx:id="details" />
+                    <WebView fx:id="details" />
                 </TitledPane>
             </HBox>
     </VBox>

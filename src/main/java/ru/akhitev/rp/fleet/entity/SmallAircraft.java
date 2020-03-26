@@ -1,6 +1,7 @@
 package ru.akhitev.rp.fleet.entity;
 
 import javax.persistence.*;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "small_aircraft")
@@ -58,5 +59,11 @@ public class SmallAircraft {
     @Override
     public String toString() {
         return name;
+    }
+
+    public String toHtmlString() {
+        return "<h3>" + name + "</h3>\n<hr/>" +
+                "<b>Экипаж</b> " + crew + "<br/>" +
+                "<br/><a href='" + link + "'>Ссылка на источник данных</a>";
     }
 }

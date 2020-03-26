@@ -78,4 +78,13 @@ public class ShipDefence {
                 ((damageThreshold != null)?",  Damage Threshold: " + damageThreshold:"") +
                 '}';
     }
+
+    public String toHtmlString() {
+        return "<h4>Защита</h4>" +
+                ((shields != null)?"<b>щиты:</b> " + shields + "<br/>":"") +
+                ((dr != null)?"<b>DR:</b> " + dr + "<br/>":"") +
+                ((hp != null)?"<b>HP:</b> " + hp + "<br/>":"") +
+                ((damageThreshold != null)?"<b>Damage Threshold:</b> " + damageThreshold:"") +
+                '}';
+    }
 }

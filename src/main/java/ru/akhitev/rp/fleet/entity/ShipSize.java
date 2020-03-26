@@ -66,4 +66,11 @@ public class ShipSize {
                 ((height != null)?", высота: " + height:"") +
                 '}';
     }
+
+    public String toHtmlString() {
+        return "<h4>Размеры</h4>" +
+                ((length != null)?"<b>Длина:</b> " + length + "<br/>":"") +
+                ((width != null)?"<b>Ширина:</b> " + width + "<br/>":"") +
+                ((height != null)?"<b>Высота:</b> " + height + "<br/>":"");
+    }
 }

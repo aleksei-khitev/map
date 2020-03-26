@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'ru.akhitev'
-version '1.0-SNAPSHOT'
+version '2.0'
 
 sourceCompatibility = 1.8
 
@@ -63,6 +63,39 @@ task fatJar(type: Jar) {
      }
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
+}
+
+task makeTempDir(){
+    File versionFile = new File("distrib")
+    if (versionFile.exists()) {
+        delete fileTree(dir: "distrib")
+    }
+    versionFile.mkdir()
+    versionFile = new File("distrib/rp_map")
+    versionFile.mkdir()
+}
+
+task copyJar(type: Copy){
+    dependsOn << makeTempDir
+    dependsOn << fatJar
+    from "${buildDir}/libs/${project.name}-${version}.jar"
+    into 'distrib/rp_map'
+    println "${buildDir}/libs/${project.name}-${version}.jar"
+}
+
+task generateLaunchers(){
+    dependsOn << makeTempDir
+    File guiLauncher = new File('distrib/rp_map/run.sh')
+    guiLauncher.createNewFile()
+    guiLauncher.write("#!/bin/bash\njava -jar ${project.name}-${version}.jar")
+    guiLauncher.setExecutable(true, false)
+}
+
+task makeZip(type: Zip) {
+    dependsOn << copyJar
+    dependsOn << generateLaunchers
+    from 'distrib/rp_map'
+    archiveName 'rp_map.zip'
 }
 
 dependencies {
