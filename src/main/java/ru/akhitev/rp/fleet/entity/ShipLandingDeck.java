@@ -21,10 +21,6 @@ public class ShipLandingDeck {
     @Column(name = "landing_deck_count")
     private Integer landForceCount;
 
-    @Version
-    @Column(name = "version")
-    private int version;
-
     public Long getId() {
         return id;
     }

@@ -21,10 +21,6 @@ public class FleetUnitCompositionByShips {
     @Column(name = "ship_count")
     private Integer shipCount;
 
-    @Version
-    @Column(name = "version")
-    private int version;
-
     public Long getId() {
         return id;
     }

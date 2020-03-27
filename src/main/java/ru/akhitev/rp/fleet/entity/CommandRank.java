@@ -13,10 +13,6 @@ public class CommandRank {
     @Column
     private String name;
 
-    @Version
-    @Column(name = "version")
-    private int version;
-
     public Long getId() {
         return id;
     }

@@ -18,10 +18,6 @@ public class ShipSize {
     @Column(name = "ship_height")
     private Integer height;
 
-    @Version
-    @Column(name = "version")
-    private int version;
-
     @OneToOne
     @MapsId
     private Ship ship;
@@ -67,7 +63,7 @@ public class ShipSize {
                 '}';
     }
 
-    public String toHtmlString() {
+    String toHtmlString() {
         return "<h4>Размеры</h4>" +
                 ((length != null)?"<b>Длина:</b> " + length + "<br/>":"") +
                 ((width != null)?"<b>Ширина:</b> " + width + "<br/>":"") +

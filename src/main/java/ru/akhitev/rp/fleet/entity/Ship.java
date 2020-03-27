@@ -33,7 +33,7 @@ public class Ship {
     @Column
     private String link;
 
-    @Column
+    @Column(columnDefinition="LONGTEXT")
     private String comment;
 
     @OneToOne(mappedBy = "ship", cascade = CascadeType.ALL)
@@ -65,10 +65,6 @@ public class Ship {
             orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
     private Set<ShipLandingDeck> landingDeck;
-
-    @Version
-    @Column(name = "version")
-    private int version;
 
     public Long getId() {
         return id;

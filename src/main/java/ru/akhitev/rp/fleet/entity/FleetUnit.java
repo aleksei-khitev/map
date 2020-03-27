@@ -22,7 +22,7 @@ public class FleetUnit {
     @JoinColumn(name = "minimum_command_rank_id")
     private CommandRank minimumCommandRank;
 
-    @Column
+    @Column(columnDefinition="LONGTEXT")
     private String comments;
 
     @OneToMany(mappedBy = "fleetUnit",
@@ -42,10 +42,6 @@ public class FleetUnit {
             orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
     private Set<FleetUnitCompositionByFleetUnits> childForFleetUnits;
-
-    @Version
-    @Column(name = "version")
-    private int version;
 
     public Long getId() {
         return id;

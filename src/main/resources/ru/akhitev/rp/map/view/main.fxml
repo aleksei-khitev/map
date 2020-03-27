@@ -20,7 +20,7 @@
                 <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white; -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );">Galactic Map</Label>
                 <HBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
                     <children>
-                        <ScrollPane id="drawScrollPane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="950.0" prefWidth="1400.0"  style="-fx-background-color: grey;">
+                        <ScrollPane id="drawScrollPane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="750.0" prefWidth="1200.0"  style="-fx-background-color: grey;">
                             <padding><Insets top="25" right="25" bottom="25" left="25"/></padding>
                             <content>
                                 <Canvas fx:id="map" style="-fx-background-color: grey;"/>

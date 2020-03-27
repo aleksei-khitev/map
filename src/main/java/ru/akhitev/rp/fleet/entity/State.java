@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class State {
     private Long id;
     private String name;
-    private int version;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,16 +26,6 @@ public class State {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Version
-    @Column(name = "version")
-    public int getVersion() {
-        return version;
-    }
-
-    public void setVersion(int version) {
-        this.version = version;
     }
 
     @Override

@@ -19,10 +19,6 @@ public class ShipCrew {
     @MapsId
     private Ship ship;
 
-    @Version
-    @Column(name = "version")
-    private int version;
-
     public Long getId() {
         return id;
     }
@@ -55,7 +51,7 @@ public class ShipCrew {
                 '}';
     }
 
-    public String toHtmlString() {
+    String toHtmlString() {
         return "<h4>Экипаж</h4>" +
                 ((minimal != null)?"<b>минимальный:</b> " + minimal + "<br/>":"") +
                 ((normal != null)?"<b>полноценный:</b> " + normal + "<br/>":"");

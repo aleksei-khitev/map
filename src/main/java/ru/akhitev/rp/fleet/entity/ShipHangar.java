@@ -21,10 +21,6 @@ public class ShipHangar {
     @Column(name = "small_aircraft_count")
     private Integer aircraftCount;
 
-    @Version
-    @Column(name = "version")
-    private int version;
-
     public Long getId() {
         return id;
     }

@@ -105,4 +105,6 @@ dependencies {
     compile hibernate.em
     compile hibernate.validator
     compile db.h2
+    compile misc.slf4jJcl
+    compile misc.logback
 }

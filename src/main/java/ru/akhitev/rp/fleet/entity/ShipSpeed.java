@@ -25,10 +25,6 @@ public class ShipSpeed {
     @MapsId
     private Ship ship;
 
-    @Version
-    @Column(name = "version")
-    private int version;
-
     public Long getId() {
         return id;
     }
@@ -79,7 +75,7 @@ public class ShipSpeed {
                 '}';
     }
 
-    public String toHtmlString() {
+    String toHtmlString() {
         return "<h4>Скорость</h4>" +
                 ((spaceSpeed != null)?"<b>в космосе:</b> " + spaceSpeed + "<br/>":"") +
                 ((atmosphereSpeed != null)?"<b>в атмосфере:</b> " + atmosphereSpeed + "<br/>":"") +

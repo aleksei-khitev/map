@@ -25,10 +25,6 @@ public class ShipDefence {
     @MapsId
     private Ship ship;
 
-    @Version
-    @Column(name = "version")
-    private int version;
-
     public Long getId() {
         return id;
     }
@@ -79,7 +75,7 @@ public class ShipDefence {
                 '}';
     }
 
-    public String toHtmlString() {
+    String toHtmlString() {
         return "<h4>Защита</h4>" +
                 ((shields != null)?"<b>щиты:</b> " + shields + "<br/>":"") +
                 ((dr != null)?"<b>DR:</b> " + dr + "<br/>":"") +

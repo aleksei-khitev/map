@@ -50,7 +50,7 @@ public class ComparisonController extends AbstractController {
 
     @FXML
     public void initialize() {
-        shipService.findAllShipsInShort().stream().forEach(s -> {
+        shipService.findAllShipsInShort().forEach(s -> {
             shipForComparison1.getItems().add(s);
             shipForComparison2.getItems().add(s);
             shipAndFleetUnitForComparison1.getItems().add(s);

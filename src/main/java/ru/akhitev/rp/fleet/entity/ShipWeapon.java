@@ -21,10 +21,6 @@ public class ShipWeapon {
     @Column(name = "weapon_count")
     private Integer weaponCount;
 
-    @Version
-    @Column(name = "version")
-    private int version;
-
     public Long getId() {
         return id;
     }

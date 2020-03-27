@@ -11,7 +11,7 @@ import java.util.Set;
 @SequenceGenerator(name = "seq", initialValue = 20)
 public class StateHood {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "name", nullable = false)
@@ -65,5 +65,10 @@ public class StateHood {
 
     public void setStarSystems(Set<StarSystem> starSystems) {
         this.starSystems = starSystems;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

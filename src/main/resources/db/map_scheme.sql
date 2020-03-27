@@ -13,7 +13,7 @@ CREATE TABLE Super_State_Hood (
 );
 
 CREATE TABLE Star_System (
-    id INTEGER NOT NULL PRIMARY KEY,
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(200) NOT NULL,
     statehood_id INTEGER,
     super_statehood_id INTEGER,

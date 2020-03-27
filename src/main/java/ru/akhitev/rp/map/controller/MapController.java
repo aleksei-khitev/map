@@ -2,14 +2,23 @@ package ru.akhitev.rp.map.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.akhitev.rp.conf.AbstractController;
@@ -21,49 +30,47 @@ import ru.akhitev.rp.map.entity.StarSystem;
 import ru.akhitev.rp.map.hyperspace.EmpireLightSpeedCalculator;
 import ru.akhitev.rp.map.hyperspace.VortexSpeedCalculator;
 import ru.akhitev.rp.map.repository.StarSystemRepository;
+import ru.akhitev.rp.map.repository.StateHoodRepository;
+import ru.akhitev.rp.map.repository.SuperStateHoodRepository;
 import ru.akhitev.rp.map.router.Router;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class MapController extends AbstractController {
+    private static Logger logger = LoggerFactory.getLogger(MapController.class);
     private static final Integer MAP_WIDTH = 2000;
     private static final Integer MAP_HEIGHT = 1000;
-
-    @FXML
-    private Canvas map;
-
-    @FXML
-    private Canvas emblems;
-
-    @FXML
-    private TextArea objectInfo;
-
-    @FXML
-    private ToggleButton infoButton;
-
-    @FXML
-    private ToggleButton routeButton;
-
+    @FXML private Canvas map;
+    @FXML private Canvas emblems;
+    @FXML private TextArea objectInfo;
+    @FXML private ToggleButton infoButton;
+    @FXML private ToggleButton routeButton;
+    private ContextMenu contextMenu;
+    private double contextX;
+    private double contextY;
     private final StarSystemRepository starSystemRepository;
-
+    private StateHoodRepository stateHoodRepository;
+    private SuperStateHoodRepository superStateHoodRepository;
     private final GridOfCoordinatesDrawer gridOfCoordinatesDrawer;
-
     private final EmblemDrawer emblemDrawer;
-
     private final StarSystemDrawingManager systemDrawingManager;
-
     private final ScalingManager scalingManager;
-
     private final Router router;
-
     private final VortexSpeedCalculator vortexSpeedCalculator;
-
     private final EmpireLightSpeedCalculator empireLightSpeedCalculator;
 
     @Autowired
-    public MapController(StarSystemRepository starSystemRepository, GridOfCoordinatesDrawer gridOfCoordinatesDrawer, EmblemDrawer emblemDrawer, StarSystemDrawingManager systemDrawingManager, ScalingManager scalingManager, Router router, VortexSpeedCalculator vortexSpeedCalculator, EmpireLightSpeedCalculator empireLightSpeedCalculator) {
+    public MapController(StarSystemRepository starSystemRepository, StateHoodRepository stateHoodRepository, SuperStateHoodRepository superStateHoodRepository, GridOfCoordinatesDrawer gridOfCoordinatesDrawer, EmblemDrawer emblemDrawer, StarSystemDrawingManager systemDrawingManager, ScalingManager scalingManager, Router router, VortexSpeedCalculator vortexSpeedCalculator, EmpireLightSpeedCalculator empireLightSpeedCalculator) {
         this.starSystemRepository = starSystemRepository;
+        this.stateHoodRepository = stateHoodRepository;
+        this.superStateHoodRepository = superStateHoodRepository;
         this.gridOfCoordinatesDrawer = gridOfCoordinatesDrawer;
         this.emblemDrawer = emblemDrawer;
         this.systemDrawingManager = systemDrawingManager;
@@ -73,7 +80,6 @@ public class MapController extends AbstractController {
         this.empireLightSpeedCalculator = empireLightSpeedCalculator;
         scalingManager.setScale(1);
         //initialize();
-
     }
 
 
@@ -88,6 +94,12 @@ public class MapController extends AbstractController {
 
     @FXML
     public void initialize() {
+        drawMap();
+        addOnMousePressedEvent();
+        prepareContextMenu();
+    }
+
+    private void drawMap() {
         clearMap();
         map.setWidth(MAP_WIDTH * scalingManager.getScale());
         map.setHeight(MAP_HEIGHT * scalingManager.getScale());
@@ -96,7 +108,36 @@ public class MapController extends AbstractController {
         gc.fillRect(0, 0, map.getWidth(), map.getHeight());
         gridOfCoordinatesDrawer.draw(map);
         systemDrawingManager.draw(gc);
-        addOnMousePressedEvent();
+    }
+
+    private void prepareContextMenu() {
+        contextMenu = new ContextMenu();
+        MenuItem create = new MenuItem("Добавить систему");
+        create.setOnAction((actionEvent) -> {
+            CreateSystemDialogController createSystemDialog = new CreateSystemDialogController(contextX, contextY, starSystemRepository, stateHoodRepository, superStateHoodRepository);
+            URL resource = getClass().getResource("/ru/akhitev/rp/map/view/createSystemDialog.fxml");
+            FXMLLoader loader = new FXMLLoader(resource);
+            loader.setController(createSystemDialog);
+            Parent parent = null;
+            try {
+                parent = loader.load();
+            } catch (IOException e) {
+                logger.error("Ошибка при открытии диалога", e);
+            }
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.setTitle("Добавление системы");
+            stage.showAndWait();
+            drawMap();
+        });
+        contextMenu.getItems().addAll(create);
+        map.setOnContextMenuRequested(event -> {
+            contextX = scalingManager.reScaleCoordinate(event.getX());
+            contextY = scalingManager.reScaleCoordinate(event.getY());
+            contextMenu.show(map, event.getScreenX(), event.getScreenY());
+        });
     }
 
     private void clearMap() {

@@ -7,7 +7,7 @@ import javax.persistence.*;
 @SequenceGenerator(name = "seq", initialValue = 20)
 public class StarSystem {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "name", nullable = false)
@@ -96,5 +96,12 @@ public class StarSystem {
 
     public enum StarSystemImportance {
         SUPER_STATEHOOD_CAPITAL, STATEHOOD_CAPITAL, IMPORTANT_SYSTEM, SYSTEM;
+
+        public static StarSystemImportance byId(Integer id) {
+            if (id == 0) return SUPER_STATEHOOD_CAPITAL;
+            else if (id == 1) return STATEHOOD_CAPITAL;
+            else if (id == 2) return IMPORTANT_SYSTEM;
+            else return SYSTEM;
+        }
     }
 }
