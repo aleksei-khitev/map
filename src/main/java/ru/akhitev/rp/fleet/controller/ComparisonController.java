@@ -106,10 +106,10 @@ public class ComparisonController extends AbstractController {
                 shipComparisonResultBuilder.append(prepareCompareRow("Скорость в Атмосфере",
                         selectedShip1.getSpeed().getAtmosphereSpeed(),
                         selectedShip2.getSpeed().getAtmosphereSpeed()));
-                shipComparisonResultBuilder.append(prepareCompareRow("Основной иппердвигатель",
+                shipComparisonResultBuilder.append(prepareReversedCompareRow("Основной иппердвигатель",
                         selectedShip1.getSpeed().getMainHyperDriveClass(),
                         selectedShip2.getSpeed().getMainHyperDriveClass()));
-                shipComparisonResultBuilder.append(prepareCompareRow("Резервный иппердвигатель",
+                shipComparisonResultBuilder.append(prepareReversedCompareRow("Резервный иппердвигатель",
                         selectedShip1.getSpeed().getBackupHyperDriveClass(),
                         selectedShip2.getSpeed().getBackupHyperDriveClass()));
                 shipComparisonResultBuilder.append(prepareCompareRow("Щиты",
