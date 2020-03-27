@@ -146,7 +146,7 @@ insert into ship_weapon(ship_id, weapon_id, weapon_count) values(13, 4, 10);
 insert into ship_hanger(ship_id, small_aircraft_id, small_aircraft_count) values(13, 1, 4);
 insert into ship_hanger(ship_id, small_aircraft_id, small_aircraft_count) values(13, 2, 24);
 insert into ship_hanger(ship_id, small_aircraft_id, small_aircraft_count) values(13, 4, 6);
-insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(12, 1, 1600);
+insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(13, 1, 1600);
 
 insert into ship(id, type, ship_class, producer, cost, autonomy, link) values(14, 'Звездный Разрушитель', 'Император-I', 'Kuat Drive Yards  ', 130000000, 2190, 'http://starforge.info/galactic-empire-ships/imperator-i-class-star-destroyer/');
 insert into ship_size(ship_id, ship_length, ship_width, ship_height) values(14, 1600, null, null);

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.scene.control.Button?>
+<GridPane hgap="5" vgap="5" xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="ru.akhitev.rp.fleet.controller.ComparisonController"
+          style="-fx-background-color: grey;" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1800.0">
+    <VBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
+        <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white; -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );">Сравнение</Label>
+        <HBox>
+            <TabPane prefHeight="950.0" prefWidth="700.0">
+                <Tab text="Корабли">
+                    <VBox>
+                        <HBox>
+                            <ComboBox fx:id="shipForComparison1" />
+                            <ComboBox fx:id="shipForComparison2" />
+                        </HBox>
+                        <Button fx:id="shipCompare" text="Сравнить"/>
+                        <WebView fx:id="shipComparisonResult" />
+                    </VBox>
+                </Tab>
+                <Tab text="Соединения кораблей">
+                    <VBox>
+                        <HBox>
+                            <ComboBox fx:id="fleetUnitForComparison1" />
+                            <ComboBox fx:id="fleetUnitForComparison2" />
+                        </HBox>
+                        <Button fx:id="fleetUnitCompare" text="Сравнить"/>
+                        <WebView fx:id="fleetUnitComparisonResult" />
+                    </VBox>
+                </Tab>
+                <Tab text="Корабли и соединения кораблей">
+                    <VBox>
+                        <HBox>
+                            <ComboBox fx:id="shipAndFleetUnitForComparison1" />
+                            <ComboBox fx:id="shipAndFleetUnitForComparison2" />
+                        </HBox>
+                        <Button fx:id="shipAndFleetUnitCompare" text="Сравнить"/>
+                        <WebView fx:id="shipAndFleetUnitComparisonResult" />
+                    </VBox>
+                </Tab>
+
+            </TabPane>
+        </HBox>
+
+    </VBox>
+</GridPane>

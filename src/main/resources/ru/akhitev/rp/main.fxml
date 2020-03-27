@@ -19,6 +19,9 @@
             <Tab text="Флот">
                 <fx:include source="fleet/view/main.fxml" />
             </Tab>
+            <Tab text="Сравнение">
+                <fx:include source="fleet/view/comparison.fxml" />
+            </Tab>
         </TabPane>
     </VBox>
 </Pane>

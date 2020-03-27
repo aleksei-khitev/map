@@ -60,13 +60,13 @@
                     <Tab text="Подроная сводка">
                         <VBox>
                             <TitledPane text="Корабли">
-                                <TableView fx:id="shipsCount" />
+                                <TableView fx:id="shipsCount" maxHeight="200"/>
                             </TitledPane>
                             <TitledPane text="Малые летательные аппараты">
-                                <TableView fx:id="smallAirCraftCount" />
+                                <TableView fx:id="smallAirCraftCount" maxHeight="200" />
                             </TitledPane>
                             <TitledPane text="Десант и наземные силы">
-                                <TableView fx:id="landingForcesCount" />
+                                <TableView fx:id="landingForcesCount" maxHeight="200" />
                             </TitledPane>
                         </VBox>
                     </Tab>

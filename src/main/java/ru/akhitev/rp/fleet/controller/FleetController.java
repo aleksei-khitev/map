@@ -52,6 +52,17 @@ public class FleetController extends AbstractController {
         show.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             String selectedItem = fleetUnits.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
+                minimalOnly.clear();
+                normalAndAirCraftAndLanding.clear();
+                normalAndAirCraft.clear();
+                minimalAndAirCraft.clear();
+                cost.clear();
+                airCraft.clear();
+                landingSoldiersAndCrew.clear();
+                smallShips.clear();
+                bigShips.clear();
+                mediumShips.clear();
+
                 Optional<FleetUnitShort> selectedFleetUnit = units.stream().filter(u -> u.getName().equals(selectedItem)).findAny();
                 selectedFleetUnit.ifPresent(u -> {
                     FleetUnitSummary summary = fleetService.prepareReportForFleetUnitById(u.getId());
