@@ -94,6 +94,15 @@ public class StarSystem {
         return builder.toString();
     }
 
+    public String toHtmlString() {
+        final String format = "<h3>Система</h3> <b>%s</b> [%.2f, %.2f]<h4>Принадлежность:</h4> %s";
+        StringBuilder builder = new StringBuilder(String.format(format, name, coordinateX, coordinateY, statehood.getName()));
+        if (superStatehood != null) {
+            builder.append(String.format("<h4>Сверхобъединение:</h4> %s", superStatehood.getName()));
+        }
+        return builder.toString();
+    }
+
     public enum StarSystemImportance {
         SUPER_STATEHOOD_CAPITAL, STATEHOOD_CAPITAL, IMPORTANT_SYSTEM, SYSTEM;
 

@@ -30,7 +30,7 @@ public class Router {
     }
 
     public String getPointsInfo() {
-        String format = "Точка А [%.2f и %.2f]\r\nТочка Б [%.2f и %.2f]";
+        String format = "Точка А [%.2f и %.2f]<br/>Точка Б [%.2f и %.2f]";
         return String.format(format, scale(points.get(0).x), scale(points.get(0).y), scale(points.get(1).x), scale(points.get(0).y));
     }
 

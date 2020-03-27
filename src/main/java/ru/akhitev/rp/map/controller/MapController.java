@@ -15,6 +15,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -49,9 +50,7 @@ public class MapController extends AbstractController {
     private static final Integer MAP_HEIGHT = 1000;
     @FXML private Canvas map;
     @FXML private Canvas emblems;
-    @FXML private TextArea objectInfo;
-    @FXML private ToggleButton infoButton;
-    @FXML private ToggleButton routeButton;
+    @FXML private WebView objectInfo;
     private ContextMenu contextMenu;
     private double contextX;
     private double contextY;
@@ -132,7 +131,19 @@ public class MapController extends AbstractController {
             stage.showAndWait();
             drawMap();
         });
-        contextMenu.getItems().addAll(create);
+        MenuItem info = new MenuItem("Информация о системе");
+        info.setOnAction((actionEvent) -> {
+            processInfoQuering();
+        });
+        MenuItem hyperSpaceRouteStart = new MenuItem("Прыжок: начальная точка");
+        hyperSpaceRouteStart.setOnAction((actionEvent) -> {
+            processRouteCalculation(true);
+        });
+        MenuItem hyperSpaceRouteFinish = new MenuItem("Прыжок: конечная точка");
+        hyperSpaceRouteFinish.setOnAction((actionEvent) -> {
+            processRouteCalculation(false);
+        });
+        contextMenu.getItems().addAll(create, info, hyperSpaceRouteStart, hyperSpaceRouteFinish);
         map.setOnContextMenuRequested(event -> {
             contextX = scalingManager.reScaleCoordinate(event.getX());
             contextY = scalingManager.reScaleCoordinate(event.getY());
@@ -148,45 +159,34 @@ public class MapController extends AbstractController {
     }
 
     private void addOnMousePressedEvent() {
-        map.setOnMousePressed((event) -> {
-            if (infoButton.isSelected()) {
-                processInfoQuering(event);
-            }
-            if (routeButton.isSelected()) {
-                processRouteCalculation(event);
-            }
-        });
+
     }
 
-    private void processInfoQuering(MouseEvent event) {
-        objectInfo.clear();
+    private void processInfoQuering() {
         GraphicsContext gc = emblems.getGraphicsContext2D();
         gc.setFill(Color.GRAY);
         gc.fillRect(0, 0, emblems.getWidth(), emblems.getHeight());
         gc.clearRect(0, 0, emblems.getWidth(), emblems.getHeight());
-        List<StarSystem> starSystems = starSystemRepository.findNearCoordinates(scalingManager.reScaleCoordinate(event.getX()), scalingManager.reScaleCoordinate(event.getY()));
+        List<StarSystem> starSystems = starSystemRepository.findNearCoordinates(contextX, contextY);
         if (starSystems != null && starSystems.size() > 0) {
             StarSystem starSystem = starSystems.get(0);
-            objectInfo.appendText(starSystem.toString());
+            objectInfo.getEngine().loadContent(starSystem.toHtmlString());
             emblemDrawer.drawEmblems(emblems, starSystem);
         } else {
-            objectInfo.appendText("В выбранном участке +-15 единиц системы не найдены.");
+            objectInfo.getEngine().loadContent("В выбранном участке +-15 единиц системы <b>не найдены.</b>");
         }
-        infoButton.setSelected(false);
     }
 
-    private void processRouteCalculation(MouseEvent event) {
-        if (router.routeDidNotStarted()) {
-            objectInfo.clear();
-            router.startRoute(event.getX(), event.getY());
+    private void processRouteCalculation(boolean isStart) {
+        if (isStart) {
+            router.startRoute(contextX, contextY);
         } else {
-            final String format = "Машрут:\n------\nКоординаты точек маршрута:\n%s\nДистанция: %.2f св.лет\nВремя на полет:\nВ вортекс пространстве: %.2fч.,\nВ имперском гипперпространстве: %.2fч.";
-            double distance = router.finishRouteAndCalculate(event.getX(), event.getY());
+            final String format = "<h3>Машрут:</h3><b>Координаты точек маршрута: </b><br/>%s<br/><b>Дистанция: </b>%.2f св.лет<br/><h4>Время на полет:</h4><b>В вортекс пространстве:</b> %.2fч.,<br/><b>В имперском гипперпространстве:</b> %.2fч.";
+            double distance = router.finishRouteAndCalculate(contextX, contextY);
             double timeInVortex = vortexSpeedCalculator.calculate(distance);
             double timeInEmpireLightSpeed = empireLightSpeedCalculator.calculate(distance);
-            objectInfo.appendText(String.format(format, router.getPointsInfo(), distance, timeInVortex, timeInEmpireLightSpeed));
+            objectInfo.getEngine().loadContent(String.format(format, router.getPointsInfo(), distance, timeInVortex, timeInEmpireLightSpeed));
             router.reset();
-            routeButton.setSelected(false);
         }
     }
 }
