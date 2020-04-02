@@ -10,18 +10,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.web.WebView?>
+<?import java.net.URL?>
 <Pane style="-fx-background-color: grey;" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1800.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.akhitev.rp.map.controller.MapController">
     <children>
         <VBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
             <children>
-                <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white; -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );">Galactic Map</Label>
+                <Label styleClass="title_label">Galactic Map</Label>
                 <HBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
                     <children>
-                        <ScrollPane id="drawScrollPane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="750.0" prefWidth="1200.0"  style="-fx-background-color: grey;">
+                        <ScrollPane id="drawScrollPane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="750.0" prefWidth="1100.0"  style="-fx-background-color: grey;">
                             <padding><Insets top="25" right="25" bottom="25" left="25"/></padding>
                             <content>
                                 <Canvas fx:id="map" style="-fx-background-color: grey;"/>
@@ -29,7 +27,7 @@
                         </ScrollPane>
                         <VBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
                             <children>
-                                <WebView fx:id="objectInfo" focusTraversable="false" prefHeight="400.0" prefWidth="308.0" wrapText="true"/>
+                                <WebView fx:id="objectInfo" focusTraversable="false" prefHeight="600.0" prefWidth="400.0" />
                                 <Canvas fx:id="emblems" width="160" height="80" />
                             </children>
                         </VBox>
@@ -45,4 +43,7 @@
             </children>
         </VBox>
     </children>
+    <stylesheets>
+        <URL value="@../../main.css" />
+    </stylesheets>
 </Pane>

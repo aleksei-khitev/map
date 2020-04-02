@@ -1,6 +1,11 @@
 package ru.akhitev.rp.map.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "Star_System")
@@ -18,6 +23,24 @@ public class StarSystem {
 
     @ManyToOne @JoinColumn(name = "super_statehood_id")
     private SuperStateHood superStatehood;
+
+    @OneToMany(mappedBy = "starSystem",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Set<StarSystemGarrison> garrison;
+
+    @OneToMany(mappedBy = "starSystem",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Set<StarSystemGarrisonSmallAirCraft> garrisonSmallAirCrafts;
+
+    @OneToMany(mappedBy = "starSystem",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Set<StarSystemFleetUnit> starSystemFleetUnits;
 
     @Column(name = "system_importance", nullable = false)
     private StarSystemImportance systemImportance;
@@ -84,6 +107,18 @@ public class StarSystem {
         this.coordinateY = coordinateY;
     }
 
+    public Set<StarSystemGarrison> getGarrison() {
+        return garrison;
+    }
+
+    public Set<StarSystemGarrisonSmallAirCraft> getGarrisonSmallAirCrafts() {
+        return garrisonSmallAirCrafts;
+    }
+
+    public Set<StarSystemFleetUnit> getStarSystemFleetUnits() {
+        return starSystemFleetUnits;
+    }
+
     @Override
     public String toString() {
         final String format = "Система %s [%.2f, %.2f]\nПринадлежность: %s";
@@ -100,6 +135,18 @@ public class StarSystem {
         if (superStatehood != null) {
             builder.append(String.format("<h4>Сверхобъединение:</h4> %s", superStatehood.getName()));
         }
+        builder.append((garrison !=null && garrison.size() > 0)?"<h5>Сухопутный гарнизон:</h5><ul>" + garrison.stream()
+                .map(StarSystemGarrison::toString)
+                .map(s -> "<li>" + s + "</li>")
+                .collect(Collectors.joining()) + "</ul>":"" );
+        builder.append((garrisonSmallAirCrafts !=null && garrisonSmallAirCrafts.size() > 0)?"<h5>МЛА гарнизона:</h5><ul>" + garrisonSmallAirCrafts.stream()
+                .map(StarSystemGarrisonSmallAirCraft::toString)
+                .map(s -> "<li>" + s + "</li>")
+                .collect(Collectors.joining()) + "</ul>":"" );
+        builder.append((starSystemFleetUnits !=null && starSystemFleetUnits.size() > 0)?"<h5>Космические силы гарнизона:</h5>" + starSystemFleetUnits.stream()
+                .map(StarSystemFleetUnit::toString)
+                .map(s -> s + "<br/>")
+                .collect(Collectors.joining()):"" );
         return builder.toString();
     }
 

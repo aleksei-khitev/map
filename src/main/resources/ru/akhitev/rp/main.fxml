@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -21,6 +18,9 @@
             </Tab>
             <Tab text="Сравнение">
                 <fx:include source="fleet/view/comparison.fxml" />
+            </Tab>
+            <Tab text="Вооруженные силы">
+                <fx:include source="map/view/military.fxml" />
             </Tab>
         </TabPane>
     </VBox>

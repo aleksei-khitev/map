@@ -1,6 +1,7 @@
 package ru.akhitev.rp.fleet.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "land_force")
@@ -49,6 +50,22 @@ public class LandForce {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LandForce landForce = (LandForce) o;
+        return Objects.equals(id, landForce.id) &&
+                Objects.equals(name, landForce.name) &&
+                Objects.equals(crew, landForce.crew) &&
+                Objects.equals(link, landForce.link);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, crew, link);
     }
 
     @Override

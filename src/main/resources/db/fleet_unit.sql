@@ -1,10 +1,12 @@
 insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(1, 'Ударная линия v1', 1, '<b>3-6</b> судов.<br/>Если крейсеры или тяж крейсеры - не более <b>3</b><br/><h5>Задачи:</h5><ul><li>открытое противостояние вражеским корабельным соединениям аналогичного уровня;</li><li>нападение на ранее обнаруженные базы;</li><li>обеспечением безопасности судоходства</li></ul>');
 insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(1, 9, 1);
 insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(1, 7, 2);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(1, 13, 1);
 
 insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(12, 'Ударная линия v2', 1, '<b>3-6</b> судов.<br/>Если сли легкие крейсеры и фрегаты - <b>6</b><br/><h5>Задачи:</h5><ul><li>открытое противостояние вражеским корабельным соединениям аналогичного уровня;</li><li>нападение на ранее обнаруженные базы;</li><li>обеспечением безопасности судоходства</li></ul>');
 insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(12, 3, 3);
 insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(12, 5, 3);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(12, 13, 1);
 
 insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(2, 'Разведывательная линия', 1, '<b>4-8</b> кораблей.<br/>Легкие крейсеры, фрегаты, сец. модификации.<h5>Задачи:</h5><ul><li>обнаружение кораблей или баз противника и наведении на них УЛ или ТУЛ;</li><li>Если же противник начинал атаку РЛ, отходить, не вступая в бой</li></ul>');
 insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(2, 3, 2);
@@ -16,6 +18,7 @@ insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) 
 insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(4, 'Линия преследования', 1, '<b>4-10</b> кораблей.<br/>Как правило легкие крейсеры.<h5>Задачи:</h5><ul><li>преследования отступающего противника;</li><li>не удалось перехватить цель, просчитать вектор гиперпрыжка и последовать за отступающим противником;</li><li>перехват вражеских эскадр на этапах промежуточных гиперпространственных переходов и связывание их боем до подхода УЛ или ТУЛ</li></ul>');
 insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(4, 5, 5);
 insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(4, 1, 5);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(4, 13, 1);
 
 insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(5, 'Тяжелая ударная линия v1', 1, '<b>Победа 2</b> или <b>Империал 2</b> мог считаться ТУЛом для ударного флота');
 insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(5, 15, 1);
@@ -26,6 +29,7 @@ insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) 
 insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(13, 10, 1);
 insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(13, 7, 2);
 insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(13, 5, 4);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(13, 13, 1);
 
 insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(20, 'Тяжелая ударная линия v3', 1, '<b>Победа 1</b> или <b>Империал</b> мог считаться ТУЛом для штурмового флота');
 insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(20, 14, 1);

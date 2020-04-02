@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.web.WebView?>
+<?import java.net.URL?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ru.akhitev.rp.map.controller.MilitaryController"
+      style="-fx-background-color: grey;"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1800.0">
+    <Label styleClass="title_label">Сводка всех вооруженных сил</Label>
+    <Label styleClass="title_label">Государство</Label>
+    <ComboBox fx:id="state" />
+    <WebView fx:id="landForces" maxWidth="600" maxHeight="1000" />
+    <stylesheets>
+        <URL value="@../../main.css" />
+    </stylesheets>
+</VBox>

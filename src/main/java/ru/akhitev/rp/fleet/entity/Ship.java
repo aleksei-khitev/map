@@ -4,6 +4,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -184,6 +185,20 @@ public class Ship {
 
     public void setLandingDeck(Set<ShipLandingDeck> landingDeck) {
         this.landingDeck = landingDeck;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ship ship = (Ship) o;
+        return type.equals(ship.type) &&
+                shipClass.equals(ship.shipClass);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, shipClass);
     }
 
     @Override

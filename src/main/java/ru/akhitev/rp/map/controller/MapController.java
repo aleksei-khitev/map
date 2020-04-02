@@ -195,7 +195,8 @@ public class MapController extends AbstractController {
         List<StarSystem> starSystems = starSystemRepository.findNearCoordinates(contextX, contextY);
         if (starSystems != null && starSystems.size() > 0) {
             StarSystem starSystem = starSystems.get(0);
-            objectInfo.getEngine().loadContent(starSystem.toHtmlString());
+            String info = starSystem.toHtmlString();
+            objectInfo.getEngine().loadContent(info);
             emblemDrawer.drawEmblems(emblems, starSystem);
         } else {
             objectInfo.getEngine().loadContent("В выбранном участке +-15 единиц системы <b>не найдены.</b>");

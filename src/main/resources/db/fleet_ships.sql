@@ -134,7 +134,7 @@ insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values
 insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(12, 3, 8);
 insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(12, 4, 64);
 
-insert into ship(id, type, ship_class, producer, cost, autonomy, link) values(13, 'Звездный Разрушитель', 'Победа-II', 'Rendili StarDrive ', 50000000, 1460, 'http://starforge.info/galactic-empire-ships/victory-ii-class-star-destroyer/');
+insert into ship(id, type, ship_class, producer, cost, autonomy, link) values(13, 'Линейный крейсер', 'Победа-II', 'Rendili StarDrive ', 50000000, 1460, 'http://starforge.info/galactic-empire-ships/victory-ii-class-star-destroyer/');
 insert into ship_size(ship_id, ship_length, ship_width, ship_height) values(13, 900, 564, 289);
 insert into ship_crew(ship_id, minimal, normal) values(13, 2100, 6107);
 insert into ship_speed(ship_id, space_speed, atmosphere_speed, main_hyper_drive_class, backup_hyper_drive_class) values(13, 60, null, 1, 15);
@@ -148,7 +148,7 @@ insert into ship_hanger(ship_id, small_aircraft_id, small_aircraft_count) values
 insert into ship_hanger(ship_id, small_aircraft_id, small_aircraft_count) values(13, 4, 6);
 insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(13, 1, 1600);
 
-insert into ship(id, type, ship_class, producer, cost, autonomy, link) values(14, 'Звездный Разрушитель', 'Император-I', 'Kuat Drive Yards  ', 130000000, 2190, 'http://starforge.info/galactic-empire-ships/imperator-i-class-star-destroyer/');
+insert into ship(id, type, ship_class, producer, cost, autonomy, link) values(14, 'Линейный корабль', 'Император-I', 'Kuat Drive Yards  ', 130000000, 2190, 'http://starforge.info/galactic-empire-ships/imperator-i-class-star-destroyer/');
 insert into ship_size(ship_id, ship_length, ship_width, ship_height) values(14, 1600, null, null);
 insert into ship_crew(ship_id, minimal, normal) values(14, 5600 , 37085);
 insert into ship_speed(ship_id, space_speed, atmosphere_speed, main_hyper_drive_class, backup_hyper_drive_class) values(14, 60, null, 2, 8);
@@ -167,7 +167,7 @@ insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values
 insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(14, 7, 30);
 insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(14, 8, 1);
 
-insert into ship(id, type, ship_class, producer, cost, autonomy, link) values(15, 'Звездный Разрушитель', 'Император-II', 'Kuat Drive Yards  ', 147000000, 2190, 'http://starforge.info/galactic-empire-ships/imperator-ii-class-star-destroyer/');
+insert into ship(id, type, ship_class, producer, cost, autonomy, link) values(15, 'Линейный корабль', 'Император-II', 'Kuat Drive Yards  ', 147000000, 2190, 'http://starforge.info/galactic-empire-ships/imperator-ii-class-star-destroyer/');
 insert into ship_size(ship_id, ship_length, ship_width, ship_height) values(15, 1600, null, null);
 insert into ship_crew(ship_id, minimal, normal) values(15, 5000 , 37085);
 insert into ship_speed(ship_id, space_speed, atmosphere_speed, main_hyper_drive_class, backup_hyper_drive_class) values(15, 60, null, 2, 8);
@@ -216,7 +216,7 @@ insert into ship_defence(ship_id, shields, hp, dr, damage_threshold) values(18, 
 insert into ship_weapon(ship_id, weapon_id, weapon_count) values(18, 17, 10);
 insert into ship_weapon(ship_id, weapon_id, weapon_count) values(18, 27, 2);
 
-insert into ship(id, type, ship_class, producer, cost, autonomy, link) values(19, 'Звёздный разрушитель', 'Победа-I', 'Rendili StarDrive', 57000000, 1460, 'http://starforge.info/galactic-empire-ships/victory-1-class-star-destroyer/');
+insert into ship(id, type, ship_class, producer, cost, autonomy, link) values(19, 'Линейный крейсер', 'Победа-I', 'Rendili StarDrive', 57000000, 1460, 'http://starforge.info/galactic-empire-ships/victory-1-class-star-destroyer/');
 insert into ship_size(ship_id, ship_length, ship_width, ship_height) values(19, 900, 564, 289);
 insert into ship_crew(ship_id, minimal, normal) values(19, 1785 , 5200);
 insert into ship_speed(ship_id, space_speed, atmosphere_speed, main_hyper_drive_class, backup_hyper_drive_class) values(19, 40, 800, 1, 15);
@@ -246,7 +246,7 @@ insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values
 insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(20, 3, 36);
 insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(20, 4, 320);
 
-insert into ship(id, type, ship_class, producer, cost, autonomy, link) values(21, 'Звездный Разрушитель', 'Охотник', 'Kuat Drive Yards', 50000000, 730, 'http://starforge.info/old-republic-ships/venator-star-destroyer/');
+insert into ship(id, type, ship_class, producer, cost, autonomy, link) values(21, 'Авианесущий крейсер', 'Охотник', 'Kuat Drive Yards', 50000000, 730, 'http://starforge.info/old-republic-ships/venator-star-destroyer/');
 insert into ship_size(ship_id, ship_length, ship_width, ship_height) values(21, 1137, 548, 268);
 insert into ship_crew(ship_id, minimal, normal) values(21, null , 7400);
 insert into ship_speed(ship_id, space_speed, atmosphere_speed, main_hyper_drive_class, backup_hyper_drive_class) values(21, 40, 975, 1, 12);

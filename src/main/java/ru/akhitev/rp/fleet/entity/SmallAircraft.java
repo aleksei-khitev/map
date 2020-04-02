@@ -1,6 +1,7 @@
 package ru.akhitev.rp.fleet.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Entity
@@ -50,6 +51,22 @@ public class SmallAircraft {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SmallAircraft that = (SmallAircraft) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(crew, that.crew) &&
+                Objects.equals(link, that.link);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, crew, link);
     }
 
     @Override

@@ -3,7 +3,7 @@ INSERT INTO Super_State_Hood(id, name, image, color) VALUES (0,'Galactic Empire'
 INSERT INTO State_Hood(id, name, image, color) VALUES (0,'Earth Alliance', 'images/statehood/ea.png', 'GREEN');
 
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (0,'Sol', 0, 0, 0, 320.0, 695.0);
-INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (1,'Proxima', 0, 0, 3, 360.0, 710.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (1,'Proxima', 0, 0, 2, 360.0, 710.0);
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (2,'Wolf', 0, 0, 3, 341.0, 668.0);
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (3,'Ross', 0, 0, 3, 395.0, 741.0);
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (4,'Leonis', 0, 0, 3, 431.0, 687.0);
@@ -23,7 +23,7 @@ INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_impor
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (18,'Regula', 0, 0, 3, 249.0, 730.0);
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (19,'Kapteya', 0, 0, 3, 177.0, 725.0);
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (20,'Ross 128', 0, 0, 3, 198.0, 757.0);
-INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (21,'Beta Durani', 0, 0, 3, 269.0, 762.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (21,'Beta Durani', 0, 0, 2, 269.0, 762.0);
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (22,'Jericho', 0, 0, 3, 378.0, 779.0);
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (23,'Signet', 0, 0, 3, 380.0, 809.0);
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (24,'Deneb', 0, 0, 3, 390.0, 850.0);
