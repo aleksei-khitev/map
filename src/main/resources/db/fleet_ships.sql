@@ -215,3 +215,57 @@ insert into ship_speed(ship_id, space_speed, atmosphere_speed, main_hyper_drive_
 insert into ship_defence(ship_id, shields, hp, dr, damage_threshold) values(18, 120, 950, 15, 136);
 insert into ship_weapon(ship_id, weapon_id, weapon_count) values(18, 17, 10);
 insert into ship_weapon(ship_id, weapon_id, weapon_count) values(18, 27, 2);
+
+insert into ship(id, type, ship_class, producer, cost, autonomy, link) values(19, 'Звёздный разрушитель', 'Победа-I', 'Rendili StarDrive', 57000000, 1460, 'http://starforge.info/galactic-empire-ships/victory-1-class-star-destroyer/');
+insert into ship_size(ship_id, ship_length, ship_width, ship_height) values(19, 900, 564, 289);
+insert into ship_crew(ship_id, minimal, normal) values(19, 1785 , 5200);
+insert into ship_speed(ship_id, space_speed, atmosphere_speed, main_hyper_drive_class, backup_hyper_drive_class) values(19, 40, 800, 1, 15);
+insert into ship_defence(ship_id, shields, hp, dr, damage_threshold) values(19, 150, 1200, 20, 245);
+insert into ship_weapon(ship_id, weapon_id, weapon_count) values(19, 13, 10);
+insert into ship_weapon(ship_id, weapon_id, weapon_count) values(19, 1, 40);
+insert into ship_weapon(ship_id, weapon_id, weapon_count) values(19, 28, 80);
+insert into ship_weapon(ship_id, weapon_id, weapon_count) values(19, 4, 10);
+insert into ship_hanger(ship_id, small_aircraft_id, small_aircraft_count) values(19, 1, 4);
+insert into ship_hanger(ship_id, small_aircraft_id, small_aircraft_count) values(19, 2, 24);
+insert into ship_hanger(ship_id, small_aircraft_id, small_aircraft_count) values(19, 4, 6);
+insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(19, 1, 2040);
+insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(19, 6, 10);
+insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(19, 7, 15);
+
+insert into ship(id, type, ship_class, producer, cost, autonomy, link) values(20, 'Десантный корабль', 'Аккламатор', 'Rothana Heavy Engineering', null, 730, 'http://starforge.info/old-republic-ships/acclamator-i-class-assault-ship/');
+insert into ship_size(ship_id, ship_length, ship_width, ship_height) values(20, 752, 460, 183);
+insert into ship_crew(ship_id, minimal, normal) values(20, null , 700);
+insert into ship_speed(ship_id, space_speed, atmosphere_speed, main_hyper_drive_class, backup_hyper_drive_class) values(20, 40, 1200, 1, null);
+insert into ship_defence(ship_id, shields, hp, dr, damage_threshold) values(20, 120, 960, 20, 248);
+insert into ship_weapon(ship_id, weapon_id, weapon_count) values(20, 13, 12);
+insert into ship_weapon(ship_id, weapon_id, weapon_count) values(20, 14, 24);
+insert into ship_weapon(ship_id, weapon_id, weapon_count) values(20, 29, 4);
+insert into ship_hanger(ship_id, small_aircraft_id, small_aircraft_count) values(20, 3, 80);
+insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(20, 1, 16000);
+insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(20, 2, 48);
+insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(20, 3, 36);
+insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(20, 4, 320);
+
+insert into ship(id, type, ship_class, producer, cost, autonomy, link) values(21, 'Звездный Разрушитель', 'Охотник', 'Kuat Drive Yards', 50000000, 730, 'http://starforge.info/old-republic-ships/venator-star-destroyer/');
+insert into ship_size(ship_id, ship_length, ship_width, ship_height) values(21, 1137, 548, 268);
+insert into ship_crew(ship_id, minimal, normal) values(21, null , 7400);
+insert into ship_speed(ship_id, space_speed, atmosphere_speed, main_hyper_drive_class, backup_hyper_drive_class) values(21, 40, 975, 1, 12);
+insert into ship_defence(ship_id, shields, hp, dr, damage_threshold) values(21, 200, 1590, 20, 252);
+insert into ship_weapon(ship_id, weapon_id, weapon_count) values(21, 30, 8);
+insert into ship_weapon(ship_id, weapon_id, weapon_count) values(21, 1, 2);
+insert into ship_weapon(ship_id, weapon_id, weapon_count) values(21, 9, 52);
+insert into ship_weapon(ship_id, weapon_id, weapon_count) values(21, 29, 4);
+insert into ship_weapon(ship_id, weapon_id, weapon_count) values(21, 8, 6);
+insert into ship_hanger(ship_id, small_aircraft_id, small_aircraft_count) values(21, 2, 420);
+insert into ship_hanger(ship_id, small_aircraft_id, small_aircraft_count) values(21, 3, 30);
+insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(21, 1, 2000);
+insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(21, 4, 40);
+insert into ship_landing_deck(ship_id, land_force_id, landing_deck_count) values(21, 2, 24);
+
+insert into ship(id, type, ship_class, producer, cost, autonomy, link) values(22, 'Боевая танция', 'Платформа XQ5', 'Telgorn Corporation', null, null, 'https://starwars.fandom.com/wiki/XQ5_Platform');
+insert into ship_size(ship_id, ship_length, ship_width, ship_height) values(22, 936, 1000, 283);
+insert into ship_crew(ship_id, minimal, normal) values(22, null , 2540);
+insert into ship_speed(ship_id, space_speed, atmosphere_speed, main_hyper_drive_class, backup_hyper_drive_class) values(22, null, null, null, null);
+insert into ship_weapon(ship_id, weapon_id, weapon_count) values(22, 15, 6);
+insert into ship_weapon(ship_id, weapon_id, weapon_count) values(22, 7, 6);
+insert into ship_hanger(ship_id, small_aircraft_id, small_aircraft_count) values(22, 2, 36);

@@ -36,24 +36,10 @@ import java.util.Properties;
 @ComponentScan(basePackageClasses={Launcher.class})
 public class SpringConfig {
     private static Logger logger = LoggerFactory.getLogger(SpringConfig.class);
-    private static final String DIALECT = "org.hibernate.dialect.HSQLDialect";
-    private static final String SHOW_SQL = "false";
-    private static final String FORMAT_SQL = "false";
 
     @Bean
     public DataSource dataSource() {
         try {
-//            return new EmbeddedDatabaseBuilder()
-//                    .setType(EmbeddedDatabaseType.H2)
-//                    .addScripts(
-//                            "db/fleet_schema.sql",
-//                            "db/fleet_general.sql",
-//                            "db/fleet_ships.sql",
-//                            "db/fleet_unit.sql",
-//                            "db/map_scheme.sql",
-//                            "db/map.sql"
-//                            )
-//                    .build();
             DriverManagerDataSource dataSource = new DriverManagerDataSource();
             dataSource.setDriverClassName("org.h2.Driver");
             dataSource.setUrl("jdbc:h2:file:./db/rp-db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE");

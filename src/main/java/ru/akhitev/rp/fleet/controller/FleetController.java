@@ -6,7 +6,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,7 +19,7 @@ import java.util.*;
 
 @Component
 public class FleetController extends AbstractController {
-    public Button show;
+    private static final int COLUMN_WIDTH = 400;
     public ComboBox<String> fleetUnits;
     public TextField cost;
     public TextField minimalAndAirCraft;
@@ -49,7 +48,7 @@ public class FleetController extends AbstractController {
                 .sorted(Comparator.comparing(FleetUnitShort::level).reversed().thenComparing(FleetUnitShort::getName))
                 .map(FleetUnitShort::getName)
                 .forEach(fleetUnits.getItems()::add);
-        show.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+        fleetUnits.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             String selectedItem = fleetUnits.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
                 minimalOnly.clear();
@@ -94,6 +93,7 @@ public class FleetController extends AbstractController {
         });
         TableColumn<Map.Entry<Ship, Integer>, String> shipColumn = new TableColumn<>("Класс корабля");
         shipColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getKey().getShipClass()));
+        shipColumn.setMinWidth(COLUMN_WIDTH);
         TableColumn<Map.Entry<Ship, Integer>, Integer> shipCount = new TableColumn<>("Количество");
         shipCount.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().getValue()).asObject());
         shipsCount.getColumns().addAll(shipColumn, shipCount);
@@ -102,6 +102,7 @@ public class FleetController extends AbstractController {
             details.getEngine().loadContent(ship.toHtmlString());
         });
         TableColumn<Map.Entry<SmallAircraft, Integer>, String> smallAirCraftColumn = new TableColumn<>("Малый аппарат");
+        smallAirCraftColumn.setMinWidth(COLUMN_WIDTH);
         smallAirCraftColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getKey().getName()));
         TableColumn<Map.Entry<SmallAircraft, Integer>, Integer> airCraftCount = new TableColumn<>("Количество");
         airCraftCount.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().getValue()).asObject());
@@ -111,6 +112,7 @@ public class FleetController extends AbstractController {
             details.getEngine().loadContent(aircraft.toHtmlString());
         });
         TableColumn<Map.Entry<LandForce, Integer>, String> landingForceColumn = new TableColumn<>("Единицы");
+        landingForceColumn.setMinWidth(COLUMN_WIDTH);
         landingForceColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getKey().getName()));
         TableColumn<Map.Entry<LandForce, Integer>, Integer> landingForceCount = new TableColumn<>("Количество");
         landingForceCount.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().getValue()).asObject());

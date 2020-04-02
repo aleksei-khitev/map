@@ -1,5 +1,7 @@
 package ru.akhitev.rp.fleet.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.akhitev.rp.fleet.entity.FleetUnit;
 import ru.akhitev.rp.fleet.entity.FleetUnitCompositionByFleetUnits;
 import ru.akhitev.rp.fleet.entity.FleetUnitCompositionByShips;
@@ -9,6 +11,7 @@ import java.util.*;
 import java.util.concurrent.RecursiveTask;
 
 public class ShipsCounterTask extends RecursiveTask<Map<Ship, Integer>> {
+    private static Logger logger = LoggerFactory.getLogger(ShipsCounterTask.class);
     private FleetUnit fleetUnit;
     private Map<Ship, Integer> shipsCount;
     private Integer fleetUnitCount;
@@ -24,7 +27,7 @@ public class ShipsCounterTask extends RecursiveTask<Map<Ship, Integer>> {
         Set<FleetUnitCompositionByShips> ships = fleetUnit.getCompositionByShips();
         if (ships != null && ships.size() > 0) {
             for (FleetUnitCompositionByShips composition : ships) {
-                shipsCount.put(composition.getShip(), composition.getShipCount());
+                shipsCount.put(composition.getShip(), composition.getShipCount() * fleetUnitCount);
             }
         }
         Set<FleetUnitCompositionByFleetUnits> units = fleetUnit.getCompositionByFleetUnits();
@@ -35,11 +38,10 @@ public class ShipsCounterTask extends RecursiveTask<Map<Ship, Integer>> {
             for (ShipsCounterTask task : tasks) {
                 Map<Ship, Integer> shipsFromSubUnit = task.join();
                 for (Map.Entry<Ship, Integer> entry : shipsFromSubUnit.entrySet()) {
-                    Integer count = entry.getValue() * fleetUnitCount;
                     if (shipsCount.containsKey(entry.getKey())) {
-                        shipsCount.put(entry.getKey(), shipsCount.get(entry.getKey()) + count);
+                        shipsCount.put(entry.getKey(), shipsCount.get(entry.getKey()) + entry.getValue());
                     } else {
-                        shipsCount.put(entry.getKey(), count);
+                        shipsCount.put(entry.getKey(), entry.getValue());
                     }
                 }
             }

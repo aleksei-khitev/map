@@ -10,10 +10,7 @@
           style="-fx-background-color: grey;" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1800.0">
     <VBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
             <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white; -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );">Флот</Label>
-            <HBox>
-                <ComboBox fx:id="fleetUnits"></ComboBox>
-                <Button fx:id="show" text="Выполнить"/>
-            </HBox>
+            <ComboBox fx:id="fleetUnits"></ComboBox>
             <HBox>
                 <TabPane prefHeight="950.0" prefWidth="700.0">
                     <Tab text="Общая сводка">

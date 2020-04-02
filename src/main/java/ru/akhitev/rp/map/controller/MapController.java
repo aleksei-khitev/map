@@ -9,10 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
@@ -35,12 +32,15 @@ import ru.akhitev.rp.map.repository.StateHoodRepository;
 import ru.akhitev.rp.map.repository.SuperStateHoodRepository;
 import ru.akhitev.rp.map.router.Router;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -131,6 +131,30 @@ public class MapController extends AbstractController {
             stage.showAndWait();
             drawMap();
         });
+        MenuItem delete = new MenuItem("Удалить систему");
+        delete.setOnAction((actionEvent) -> {
+            List<StarSystem> starSystems = starSystemRepository.findNearCoordinates(contextX, contextY);
+            if (starSystems != null && starSystems.size() > 0) {
+                StarSystem starSystem = starSystems.get(0);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Подтверждение удаления");
+                alert.setHeaderText("Вы уверены, что хотите удалить эту систему?");
+                alert.setContentText(starSystem.toString());
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    starSystemRepository.delete(starSystem);
+                    try (FileWriter fileWriter = new FileWriter("queries_history.sql", true);
+                         PrintWriter printWriter = new PrintWriter(fileWriter)) {
+                        printWriter.println("DELETE FROM Star_System where id = " + starSystem.getId());
+                    } catch (IOException e) {
+                        logger.error("Ошибка при сохранении запроса в файл", e);
+                    }
+                }
+                drawMap();
+            } else {
+                objectInfo.getEngine().loadContent("В выбранном участке +-15 единиц системы <b>не найдены.</b>");
+            }
+        });
         MenuItem info = new MenuItem("Информация о системе");
         info.setOnAction((actionEvent) -> {
             processInfoQuering();
@@ -143,7 +167,8 @@ public class MapController extends AbstractController {
         hyperSpaceRouteFinish.setOnAction((actionEvent) -> {
             processRouteCalculation(false);
         });
-        contextMenu.getItems().addAll(create, info, hyperSpaceRouteStart, hyperSpaceRouteFinish);
+        SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
+        contextMenu.getItems().addAll(info, hyperSpaceRouteStart, hyperSpaceRouteFinish , separatorMenuItem, create, delete);
         map.setOnContextMenuRequested(event -> {
             contextX = scalingManager.reScaleCoordinate(event.getX());
             contextY = scalingManager.reScaleCoordinate(event.getY());

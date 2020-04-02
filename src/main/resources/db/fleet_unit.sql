@@ -35,8 +35,70 @@ insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(14, '
 insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(14, 17, 2);
 
 insert into fleet_unit(id, name, minimum_command_rank_id) values(15, 'Десантная линия', 1);
-insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(15, 8, 2);
-insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(15, 12, 2);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(15, 19, 3);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(15, 20, 12);
+
+insert into fleet_unit(id, name, minimum_command_rank_id) values(28, 'Линия противовоздушной обороны', 1);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(28, 21, 3);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(28, 6, 6);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(28, 3, 6);
+
+insert into fleet_unit(id, name, minimum_command_rank_id) values(29, 'Линия противокосмической обороны', 1);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(29, 8, 3);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(29, 9, 3);
+
+insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(31, 'Лёгкая патрульная линия', 1, '<h5>Задачи:</h5>патрулирование в пределах звездной системы в районах вне торговых/транспортных маршрутов, районов добычи');
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(31, 3, 3);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(31, 1, 5);
+
+insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(32, 'Тяжёлая патрульная линия', 1, '<h5>Задачи:</h5>патрулирование торговых/транспортных маршрутов, районов добычи, районов потенциального укрытия пиратов/контрабандистов/прочих противников');
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(32, 10, 3);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(32, 5, 3);
+
+insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(33, 'Линия планетарной обороны', 1, '<h5>Задачи:</h5>поддержка и контроль инспеции входящего и исходящего трафика, защита планеты');
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(33, 1, 8);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(33, 3, 3);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(33, 9, 3);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(33, 13, 2);
+
+insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(34, 'Линия быстрого реагирования', 1, '<h5>Задачи:</h5>вылет на тревожный сигнал от патрульной линии');
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(34, 13, 2);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(34, 9, 4);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(34, 15, 1);
+
+insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(35, 'Эскадра системной обороны 3', 2, '<h5>Задачи:</h5>обеспечение безопасности звездной системы с уровнем важности 3 (обычная колония), действие только в заданной системе');
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(35, 33, 1);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(35, 34, 1);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(35, 32, 1);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(35, 31, 3);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(35, 22, 1);
+
+insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(36, 'Эскадра системной обороны 2', 2, '<h5>Задачи:</h5>обеспечение безопасности звездной системы с уровнем важности 2 (важная колония, содержащая верфи, важные производства и пр.), действие только в заданной системе');
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(36, 33, 2);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(36, 34, 2);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(36, 32, 2);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(36, 31, 6);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(36, 22, 2);
+
+insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(37, 'Эскадра системной обороны 1', 2, '<h5>Задачи:</h5>Задача: обеспечение безопасности звездной системы с уровнем важности 1 (столица государства), действие только в заданной системе');
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(37, 33, 4);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(37, 34, 4);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(37, 32, 5);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(37, 31, 10);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(37, 22, 4);
+
+insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(38, 'Эскадра системной обороны 0', 2, '<h5>Задачи:</h5>обеспечение безопасности звездной системы с уровнем важности 0 (столица сверхгосударства), действие только в заданной системе');
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(38, 33, 6);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(38, 34, 5);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(38, 32, 7);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(38, 31, 15);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(38, 22, 6);
+
+insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(39, 'Эскадра секторальной обороны', 2, '<h5>Задачи:</h5>контроль над определенным сектором, патрулирование необжитых систем, реагирование на тревожный сигнал в обжитой системе, входящей в сектор');
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(39, 32, 2);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(39, 31, 3);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(39, 34, 2);
+insert into fleet_unit_composition_by_ships(fleet_unit_id, ship_id, ship_count) values(39, 22, 1);
 
 insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(6, 'Тяжелая эскадра v1', 2, '<h5>Задачи:</h5><ul><li>доразведку и основной удар по кораблям противника или охраняемому ими объекту;</li><li>охраны стратегически важного объекта в открытом космосе;</li><li>обеспечение блокады или охраны орбитального пространства вокруг планеты</li></ul>');
 insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(6, 5, 1);
@@ -68,10 +130,17 @@ insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fl
 insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(16, 1, 2);
 insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(16, 4, 1);
 
-insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(17, 'Десантная эскадра', 2, '<h5>Задача:</h5>Выполнения крупных десантных операций имперской армии и, изредка, штурмового корпуса.<br/>Легионы штурмовиков редко пользуются услугами ДЭ из-за того, что чаще всего высаживаются с борта Звездного Разрушителя, прибывая на театр военных действий (ТВД) раньше армейской группировки');
-insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(17, 15, 2);
-insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(17, 12, 1);
-insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(17, 3, 1);
+insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(17, 'Тяжелая десантная эскадра', 2, '<h5>Задача:</h5>Высадка на враждебную территорию, подготовка плацдарма для прибытия подкреплений');
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(17, 15, 1);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(17, 28, 1);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(17, 29, 1);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(17, 20, 1);
+
+insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(30, 'Лёгкая десантная эскадра', 2, '<h5>Задача:</h5>Высадка на подготовленный плацдарм и усиление наступления');
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(30, 15, 2);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(30, 28, 1);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(30, 20, 1);
+
 
 insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(18, 'Бомбардировочная эскадра', 2, '<h5>Задача:</h5>Для произведения разрушительных орбитальных бомбардировок и оказания огневой поддержки наземным подразделениям');
 insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(18, 14, 2);
@@ -88,10 +157,10 @@ insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(19, '
 insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(19, 16, 3);
 insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(19, 8, 2);
 
-insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(22, 'Транспортная флотская группировка', 3, '<h5>Задача:</h5>Осуществление стратегической десантной операции против хорошо вооруженного и многочисленного противника окопавшегося на поверхности планеты');
-insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(22, 21, 1);
-insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(22, 8, 1);
-insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(22, 17, 2);
+insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(22, 'Десантная флотская группировка', 3, '<h5>Задача:</h5>Осуществление стратегической десантной операции против хорошо вооруженного и многочисленного противника окопавшегося на поверхности планеты');
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(22, 17, 5);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(22, 30, 5);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(22, 8, 5);
 
 insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(23, 'Бомбардировочная флотская группировка', 3, 'База-Дельта-Ноль');
 insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(23, 18, 3);
@@ -102,8 +171,8 @@ insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(24, '
 insert into fleet_unit(id, name, minimum_command_rank_id, comments) values(25, 'Военно-транспортное корабельное соединение', 3, 'Типичное ВТКС полного состава включало более 100 судов всех размеров и классов.<br/>Помимо транспортников в состав соединения входили госпитальные (медицинские) корабли.<br/>Экипажи комплектовались квалифицированным техническим и медицинским персоналом, имели специализированные дроиды (в том числе дроиды-грузчики) и небольшие боты.<br/>Возможности ВТКС позволяли осуществлять доставку на корабли припасов прямо в космосе.');
 
 insert into fleet_unit(id, name, minimum_command_rank_id) values(11, 'Штурмовой флот', 4);
-insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(11, 10, 2);
-insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(11, 22, 2);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(11, 23, 1);
+insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(11, 22, 1);
 insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(11, 24, 1);
 insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(11, 25, 1);
 
@@ -112,9 +181,3 @@ insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fl
 insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(26, 10, 2);
 insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(26, 24, 1);
 insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(26, 25, 1);
-
-insert into fleet_unit(id, name, minimum_command_rank_id) values(27, 'Бомбардировочный флот', 4);
-insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(27, 23, 2);
-insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(27, 10, 2);
-insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(27, 24, 1);
-insert into fleet_unit_composition_by_fleet_units(parent_fleet_unit_id, child_fleet_unit_id, fleet_unit_count) values(27, 25, 1);

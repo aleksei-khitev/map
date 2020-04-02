@@ -32,6 +32,9 @@ insert into weapon(id, name) values(24, 'Многоствольный тяжёл
 insert into weapon(id, name) values(25, 'Восьмирённый турболазер');
 insert into weapon(id, name) values(26, 'Скорострельна лёгкая лазерная пушка');
 insert into weapon(id, name) values(27, 'Двуствольная лёгкая лазерная пушка');
+insert into weapon(id, name) values(28, 'Ракетная пусковая установка Krupx');
+insert into weapon(id, name) values(29, 'Ракетно-торпедные пусковые установки');
+insert into weapon(id, name) values(30, 'Двуствольный тяжелый турболазер');
 
 insert into small_aircraft(id, name, crew) values(1, 'Челнок', 2);
 insert into small_aircraft(id, name, crew) values(2, 'Истребитель', 1);
