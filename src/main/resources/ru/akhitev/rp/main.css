@@ -20,5 +20,5 @@
 }
 
 .bg {
-    style="-fx-background-color: grey;"
+    -fx-background-color: grey;
 }

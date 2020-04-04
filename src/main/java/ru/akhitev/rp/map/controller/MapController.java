@@ -51,6 +51,9 @@ public class MapController extends AbstractController {
     @FXML private Canvas map;
     @FXML private Canvas emblems;
     @FXML private WebView objectInfo;
+    @FXML RadioMenuItem scaleX1;
+    @FXML RadioMenuItem scaleX2;
+    @FXML RadioMenuItem scaleX3;
     private ContextMenu contextMenu;
     private double contextX;
     private double contextY;
@@ -83,11 +86,8 @@ public class MapController extends AbstractController {
 
 
     @FXML
-    public void setScale(ActionEvent event) {
-        Node node = (Node) event.getSource() ;
-        String data = (String) node.getUserData();
-        int value = Integer.parseInt(data);
-        scalingManager.setScale(value);
+    public void setScale(int scale) {
+        scalingManager.setScale(scale);
         initialize();
     }
 
@@ -96,6 +96,9 @@ public class MapController extends AbstractController {
         drawMap();
         addOnMousePressedEvent();
         prepareContextMenu();
+        scaleX1.setOnAction((actionEvent) -> setScale(1));
+        scaleX2.setOnAction((actionEvent) -> setScale(2));
+        scaleX3.setOnAction((actionEvent) -> setScale(3));
     }
 
     private void drawMap() {
@@ -130,6 +133,28 @@ public class MapController extends AbstractController {
             stage.setTitle("Добавление системы");
             stage.showAndWait();
             drawMap();
+        });
+        MenuItem edit = new MenuItem("Редактировать систему");
+        edit.setOnAction((actionEvent) -> {
+            getStarSystemByContextMenuCoordinates().ifPresent(starSystem -> {
+                EditSystemDialogController editSystemDialogController = new EditSystemDialogController(starSystem, starSystemRepository, stateHoodRepository, superStateHoodRepository);
+                URL resource = getClass().getResource("/ru/akhitev/rp/map/view/createSystemDialog.fxml");
+                FXMLLoader loader = new FXMLLoader(resource);
+                loader.setController(editSystemDialogController);
+                Parent parent = null;
+                try {
+                    parent = loader.load();
+                } catch (IOException e) {
+                    logger.error("Ошибка при открытии диалога", e);
+                }
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.setTitle("Редактирование системы");
+                stage.showAndWait();
+                drawMap();
+            });
         });
         MenuItem delete = new MenuItem("Удалить систему");
         delete.setOnAction((actionEvent) -> {
@@ -168,7 +193,7 @@ public class MapController extends AbstractController {
             processRouteCalculation(false);
         });
         SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
-        contextMenu.getItems().addAll(info, hyperSpaceRouteStart, hyperSpaceRouteFinish , separatorMenuItem, create, delete);
+        contextMenu.getItems().addAll(info, hyperSpaceRouteStart, hyperSpaceRouteFinish , separatorMenuItem, create, edit, delete);
         map.setOnContextMenuRequested(event -> {
             contextX = scalingManager.reScaleCoordinate(event.getX());
             contextY = scalingManager.reScaleCoordinate(event.getY());
@@ -187,14 +212,23 @@ public class MapController extends AbstractController {
 
     }
 
+    private Optional<StarSystem> getStarSystemByContextMenuCoordinates() {
+        List<StarSystem> starSystems = starSystemRepository.findNearCoordinates(contextX, contextY);
+        if (starSystems != null && starSystems.size() > 0) {
+            return Optional.of(starSystems.get(0));
+        } else {
+            return Optional.empty();
+        }
+    }
+
     private void processInfoQuering() {
         GraphicsContext gc = emblems.getGraphicsContext2D();
         gc.setFill(Color.GRAY);
         gc.fillRect(0, 0, emblems.getWidth(), emblems.getHeight());
         gc.clearRect(0, 0, emblems.getWidth(), emblems.getHeight());
-        List<StarSystem> starSystems = starSystemRepository.findNearCoordinates(contextX, contextY);
-        if (starSystems != null && starSystems.size() > 0) {
-            StarSystem starSystem = starSystems.get(0);
+        Optional<StarSystem> optionalStarSystem = getStarSystemByContextMenuCoordinates();
+        if (optionalStarSystem.isPresent()) {
+            StarSystem starSystem = optionalStarSystem.get();
             String info = starSystem.toHtmlString();
             objectInfo.getEngine().loadContent(info);
             emblemDrawer.drawEmblems(emblems, starSystem);

@@ -60,7 +60,7 @@ public class SpringConfig {
     private Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-        properties.put("hibernate.hbm2ddl.auto", "create");
+        properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("hibernate.hbm2ddl.import_files", "db/fleet_general.sql," +
                 "db/fleet_ships.sql," +
                 "db/fleet_unit.sql," +

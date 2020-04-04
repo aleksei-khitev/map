@@ -151,13 +151,49 @@ public class StarSystem {
     }
 
     public enum StarSystemImportance {
-        SUPER_STATEHOOD_CAPITAL, STATEHOOD_CAPITAL, IMPORTANT_SYSTEM, SYSTEM;
+        SUPER_STATEHOOD_CAPITAL(0, "Столица Сверхобъединения"),
+        STATEHOOD_CAPITAL(1, "Столица Государства"),
+        IMPORTANT_SYSTEM(2, "Важный мир"),
+        SYSTEM(3, "Обычная колония");
+
+        private int id;
+        private String name;
+
+        StarSystemImportance(int id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
 
         public static StarSystemImportance byId(Integer id) {
             if (id == 0) return SUPER_STATEHOOD_CAPITAL;
             else if (id == 1) return STATEHOOD_CAPITAL;
             else if (id == 2) return IMPORTANT_SYSTEM;
             else return SYSTEM;
+        }
+
+        public static StarSystemImportance byName(String name) {
+            switch (name){
+                case "Столица Сверхобъединения": {
+                    return SUPER_STATEHOOD_CAPITAL;
+                }
+                case "Столица Государства": {
+                    return STATEHOOD_CAPITAL;
+                }
+                case "Важный мир": {
+                    return IMPORTANT_SYSTEM;
+                }
+                default: {
+                    return SYSTEM;
+                }
+            }
         }
     }
 }

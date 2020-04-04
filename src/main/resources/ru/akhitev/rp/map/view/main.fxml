@@ -12,10 +12,26 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.web.WebView?>
 <?import java.net.URL?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
 <Pane style="-fx-background-color: grey;" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1800.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.akhitev.rp.map.controller.MapController">
     <children>
+
         <VBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
             <children>
+                <fx:define>
+                    <ToggleGroup fx:id="scaleGroup"></ToggleGroup>
+                </fx:define>
+                <MenuBar>
+                    <Menu text="Масштаб">
+                        <RadioMenuItem fx:id="scaleX1" text="x1" toggleGroup="$scaleGroup" />
+                        <RadioMenuItem fx:id="scaleX2" text="x2" toggleGroup="$scaleGroup" />
+                        <RadioMenuItem fx:id="scaleX3" text="x3" toggleGroup="$scaleGroup" />
+                    </Menu>
+                </MenuBar>
                 <Label styleClass="title_label">Galactic Map</Label>
                 <HBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: grey;">
                     <children>
@@ -31,13 +47,6 @@
                                 <Canvas fx:id="emblems" width="160" height="80" />
                             </children>
                         </VBox>
-                    </children>
-                </HBox>
-                <HBox xmlns:fx="http://javafx.com/fxml">
-                    <children>
-                        <Button text="Масштаб X1" onAction="#setScale" userData="1"/>
-                        <Button text="Масштаб X2" onAction="#setScale" userData="2"/>
-                        <Button text="Масштаб X3" onAction="#setScale" userData="3"/>
                     </children>
                 </HBox>
             </children>

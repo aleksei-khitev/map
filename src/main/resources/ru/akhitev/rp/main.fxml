@@ -8,6 +8,12 @@
             fx:controller="ru.akhitev.rp.MainController"
             prefHeight="1100.0" prefWidth="1850.0">
     <VBox xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: black;">
+        <MenuBar styleClass="bg">
+            <Menu text="Добавть">
+                <MenuItem fx:id="addState" text="Государство" />
+                <MenuItem fx:id="addSuperState" text="Сверхгосударство" />
+            </Menu>
+        </MenuBar>
         <Label>Empire</Label>
         <TabPane prefHeight="1050">
             <Tab text="Карта">

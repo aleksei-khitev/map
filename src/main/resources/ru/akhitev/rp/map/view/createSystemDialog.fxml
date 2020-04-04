@@ -17,7 +17,7 @@
         <ComboBox fx:id="superStateHood" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
         <Label GridPane.rowIndex="3" GridPane.columnIndex="0">Важность (0-3)</Label>
-        <TextField fx:id="importance" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+        <ComboBox fx:id="importance" GridPane.rowIndex="3" GridPane.columnIndex="1" />
 
         <Label GridPane.rowIndex="4" GridPane.columnIndex="0">Координаты</Label>
         <TextField fx:id="coordinates" GridPane.rowIndex="4" GridPane.columnIndex="1" editable="false" />
