@@ -1,9 +1,9 @@
 package ru.akhitev.rp.fleet.vo;
 
 import javafx.scene.control.TreeItem;
-import ru.akhitev.rp.fleet.entity.LandForce;
-import ru.akhitev.rp.fleet.entity.Ship;
-import ru.akhitev.rp.fleet.entity.SmallAircraft;
+import ru.akhitev.rp.land_force.entity.LandForce;
+import ru.akhitev.rp.ship.entity.Ship;
+import ru.akhitev.rp.small_aircraft.entity.SmallAircraft;
 
 import java.util.Map;
 import java.util.Optional;

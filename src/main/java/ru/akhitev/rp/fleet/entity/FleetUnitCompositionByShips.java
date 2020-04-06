@@ -1,5 +1,7 @@
 package ru.akhitev.rp.fleet.entity;
 
+import ru.akhitev.rp.ship.entity.Ship;
+
 import javax.persistence.*;
 
 @Entity

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Button?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      prefHeight="120.0" prefWidth="400.0">
+    <GridPane>
+        <Label GridPane.rowIndex="0" GridPane.columnIndex="0">Название</Label>
+        <Label GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="2">Пусто, если одноименная</Label>
+        <TextField fx:id="name" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+        <Label GridPane.rowIndex="2" GridPane.columnIndex="0">Население</Label>
+        <TextField fx:id="population" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+    </GridPane>
+    <HBox>
+        <Button fx:id="save" text="Сохранить и закрыть" />
+        <Button fx:id="next" text="Сохранить и перейти к ресурсам" />
+    </HBox>
+</VBox>

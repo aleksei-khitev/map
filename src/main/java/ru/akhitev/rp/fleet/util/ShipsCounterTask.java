@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import ru.akhitev.rp.fleet.entity.FleetUnit;
 import ru.akhitev.rp.fleet.entity.FleetUnitCompositionByFleetUnits;
 import ru.akhitev.rp.fleet.entity.FleetUnitCompositionByShips;
-import ru.akhitev.rp.fleet.entity.Ship;
+import ru.akhitev.rp.ship.entity.Ship;
 
 import java.util.*;
 import java.util.concurrent.RecursiveTask;

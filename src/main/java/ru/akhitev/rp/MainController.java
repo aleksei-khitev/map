@@ -11,8 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ru.akhitev.rp.conf.AbstractController;
-import ru.akhitev.rp.map.repository.StateHoodRepository;
-import ru.akhitev.rp.state.controller.AddStateHoodController;
+import ru.akhitev.rp.state_hood.repo.StateHoodRepository;
+import ru.akhitev.rp.state_hood.controller.AddStateHoodController;
 
 import java.io.IOException;
 import java.net.URL;

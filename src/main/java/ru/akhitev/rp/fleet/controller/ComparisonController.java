@@ -10,16 +10,19 @@ import org.springframework.stereotype.Component;
 import ru.akhitev.rp.conf.AbstractController;
 import ru.akhitev.rp.fleet.entity.*;
 import ru.akhitev.rp.fleet.service.FleetService;
-import ru.akhitev.rp.fleet.service.ShipService;
+import ru.akhitev.rp.ship.service.ShipService;
 import ru.akhitev.rp.fleet.vo.FleetUnitSummary;
 import ru.akhitev.rp.fleet.vo.ShipShort;
+import ru.akhitev.rp.ship.entity.Ship;
+import ru.akhitev.rp.ship.entity.ShipHangar;
+import ru.akhitev.rp.ship.entity.ShipLandingDeck;
+import ru.akhitev.rp.ship.entity.ShipWeapon;
 
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiPredicate;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 @Component

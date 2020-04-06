@@ -1,16 +1,13 @@
 package ru.akhitev.rp.map.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
@@ -23,25 +20,23 @@ import ru.akhitev.rp.conf.AbstractController;
 import ru.akhitev.rp.map.drawer.ScalingManager;
 import ru.akhitev.rp.map.drawer.EmblemDrawer;
 import ru.akhitev.rp.map.drawer.GridOfCoordinatesDrawer;
-import ru.akhitev.rp.map.drawer.starsystem.StarSystemDrawingManager;
-import ru.akhitev.rp.map.entity.StarSystem;
+import ru.akhitev.rp.star_system.controller.star_system_general.CreateSystemDialogController;
+import ru.akhitev.rp.star_system.controller.star_system_general.EditSystemDialogController;
+import ru.akhitev.rp.star_system.drawer.StarSystemDrawingManager;
+import ru.akhitev.rp.star_system.entity.StarSystem;
 import ru.akhitev.rp.map.hyperspace.EmpireLightSpeedCalculator;
 import ru.akhitev.rp.map.hyperspace.VortexSpeedCalculator;
-import ru.akhitev.rp.map.repository.StarSystemRepository;
-import ru.akhitev.rp.map.repository.StateHoodRepository;
-import ru.akhitev.rp.map.repository.SuperStateHoodRepository;
+import ru.akhitev.rp.star_system.repo.StarSystemRepository;
+import ru.akhitev.rp.state_hood.repo.StateHoodRepository;
+import ru.akhitev.rp.super_state_hood.repo.SuperStateHoodRepository;
 import ru.akhitev.rp.map.router.Router;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Component
 public class MapController extends AbstractController {
@@ -116,8 +111,8 @@ public class MapController extends AbstractController {
         contextMenu = new ContextMenu();
         MenuItem create = new MenuItem("Добавить систему");
         create.setOnAction((actionEvent) -> {
-            CreateSystemDialogController createSystemDialog = new CreateSystemDialogController(contextX, contextY, starSystemRepository, stateHoodRepository, superStateHoodRepository);
-            URL resource = getClass().getResource("/ru/akhitev/rp/map/view/createSystemDialog.fxml");
+            CreateSystemDialogController createSystemDialog = new CreateSystemDialogController(contextX, contextY, getContext());
+            URL resource = getClass().getResource("/ru/akhitev/rp/star_system/addEditSystemDialog_general.fxml");
             FXMLLoader loader = new FXMLLoader(resource);
             loader.setController(createSystemDialog);
             Parent parent = null;
@@ -137,8 +132,8 @@ public class MapController extends AbstractController {
         MenuItem edit = new MenuItem("Редактировать систему");
         edit.setOnAction((actionEvent) -> {
             getStarSystemByContextMenuCoordinates().ifPresent(starSystem -> {
-                EditSystemDialogController editSystemDialogController = new EditSystemDialogController(starSystem, starSystemRepository, stateHoodRepository, superStateHoodRepository);
-                URL resource = getClass().getResource("/ru/akhitev/rp/map/view/createSystemDialog.fxml");
+                EditSystemDialogController editSystemDialogController = new EditSystemDialogController(starSystem, getContext());
+                URL resource = getClass().getResource("/ru/akhitev/rp/star_system/addEditSystemDialog_general.fxml");
                 FXMLLoader loader = new FXMLLoader(resource);
                 loader.setController(editSystemDialogController);
                 Parent parent = null;

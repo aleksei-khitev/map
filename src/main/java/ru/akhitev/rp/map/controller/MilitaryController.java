@@ -8,18 +8,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.akhitev.rp.conf.AbstractController;
-import ru.akhitev.rp.fleet.entity.FleetUnit;
-import ru.akhitev.rp.fleet.entity.LandForce;
-import ru.akhitev.rp.fleet.entity.Ship;
-import ru.akhitev.rp.fleet.entity.SmallAircraft;
+import ru.akhitev.rp.land_force.entity.LandForce;
+import ru.akhitev.rp.ship.entity.Ship;
+import ru.akhitev.rp.small_aircraft.entity.SmallAircraft;
 import ru.akhitev.rp.fleet.service.FleetService;
 import ru.akhitev.rp.fleet.vo.FleetUnitSummary;
-import ru.akhitev.rp.map.entity.*;
-import ru.akhitev.rp.map.repository.StarSystemRepository;
-import ru.akhitev.rp.map.repository.StateHoodRepository;
+import ru.akhitev.rp.star_system.entity.*;
+import ru.akhitev.rp.star_system.repo.StarSystemRepository;
+import ru.akhitev.rp.state_hood.repo.StateHoodRepository;
+import ru.akhitev.rp.state_hood.entity.StateHood;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Component
@@ -45,9 +46,11 @@ public class MilitaryController extends AbstractController {
         state.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             Map<LandForce, Long> landForceCount = new HashMap<>();
             starSystemRepository.findByStatehood(newValue).stream()
+                    .map(star -> star.getPlanets())
+                    .flatMap(Set::stream)
                     .filter(star -> star.getGarrison() != null && star.getGarrison().size() > 0)
-                    .map(StarSystem::getGarrison).forEach(garrisons -> {
-                        for (StarSystemGarrison garrison : garrisons) {
+                    .map(Planet::getGarrison).forEach(garrisons -> {
+                        for (PlanetGarrison garrison : garrisons) {
                             LandForce landForce = garrison.getLandForce();
                             if (landForceCount.containsKey(landForce)) {
                                 landForceCount.put(landForce, landForceCount.get(landForce) + garrison.getLandForceCount());
@@ -58,9 +61,11 @@ public class MilitaryController extends AbstractController {
             });
             Map<SmallAircraft, Long> smallAircraftCount = new HashMap<>();
             starSystemRepository.findByStatehood(newValue).stream()
+                    .map(star -> star.getPlanets())
+                    .flatMap(Set::stream)
                     .filter(star -> star.getGarrisonSmallAirCrafts() != null && star.getGarrisonSmallAirCrafts().size() > 0)
-                    .map(StarSystem::getGarrisonSmallAirCrafts).forEach(garrisonAirCrafts -> {
-                        for (StarSystemGarrisonSmallAirCraft garrisonSmallAirCraft : garrisonAirCrafts) {
+                    .map(Planet::getGarrisonSmallAirCrafts).forEach(garrisonAirCrafts -> {
+                        for (PlanetGarrisonSmallAirCraft garrisonSmallAirCraft : garrisonAirCrafts) {
                             SmallAircraft smallAircraft = garrisonSmallAirCraft.getSmallAircraft();
                             if (smallAircraftCount.containsKey(smallAircraft)) {
                                 smallAircraftCount.put(smallAircraft, smallAircraftCount.get(smallAircraft) + garrisonSmallAirCraft.getSmallAircraftCount());

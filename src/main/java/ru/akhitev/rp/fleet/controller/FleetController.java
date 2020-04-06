@@ -14,6 +14,9 @@ import ru.akhitev.rp.fleet.entity.*;
 import ru.akhitev.rp.fleet.service.FleetService;
 import ru.akhitev.rp.fleet.vo.FleetUnitStructure;
 import ru.akhitev.rp.fleet.vo.FleetUnitSummary;
+import ru.akhitev.rp.land_force.entity.LandForce;
+import ru.akhitev.rp.ship.entity.Ship;
+import ru.akhitev.rp.small_aircraft.entity.SmallAircraft;
 
 import java.util.*;
 

@@ -3,8 +3,6 @@ insert into command_rank(id, name) values(2, 'Контр-адмирал');
 insert into command_rank(id, name) values(3, 'Адмирал');
 insert into command_rank(id, name) values(4, 'Адмирал флота');
 
-insert into space_state(id, name) values(1, 'Галактическая империя');
-
 insert into weapon(id, name) values(1, 'Двуствольная турболазерная пушка');
 insert into weapon(id, name) values(2, 'Четырехствольная лазерная пушка');
 insert into weapon(id, name) values(3, 'Торпедная установка');

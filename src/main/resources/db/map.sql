@@ -3,6 +3,9 @@ INSERT INTO Super_State_Hood(id, name, image, color) VALUES (0,'Galactic Empire'
 INSERT INTO State_Hood(id, name, image, color) VALUES (0,'Earth Alliance', 'images/statehood/ea.png', 'GREEN');
 
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (0,'Sol', 0, 0, 0, 320.0, 695.0);
+INSERT INTO planet(id, star_system_id, name, population) VALUES (0, 0, 'Земля', 10000000);
+INSERT INTO planet(id, star_system_id, name, population) VALUES (1, 0, 'Марс', 50000000);
+
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (1,'Proxima', 0, 0, 2, 360.0, 710.0);
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (2,'Wolf', 0, 0, 3, 341.0, 668.0);
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (3,'Ross', 0, 0, 3, 395.0, 741.0);

@@ -4,11 +4,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import org.springframework.stereotype.Service;
-import ru.akhitev.rp.map.entity.StarSystem;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.net.URL;
+import ru.akhitev.rp.star_system.entity.StarSystem;
 
 @Service
 public class EmblemDrawer {
