@@ -3,6 +3,7 @@ package ru.akhitev.rp.star_system.drawer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import ru.akhitev.rp.map.drawer.ScalingManager;
+import ru.akhitev.rp.star_system.drawer.AbstractStarSystemDrawer;
 import ru.akhitev.rp.star_system.entity.StarSystem;
 
 public class CapitalOfSuperStateHoodDrawer extends AbstractStarSystemDrawer {
@@ -19,29 +20,29 @@ public class CapitalOfSuperStateHoodDrawer extends AbstractStarSystemDrawer {
     }
 
     @Override
-    void drawStarSystemFigure() {
+    public void drawStarSystemFigure() {
         prepareFigureColors();
         graphicsContext2D.fillOval(scalingManager.scaleCoordinate(starSystem.getCoordinateX()), scalingManager.scaleCoordinate(starSystem.getCoordinateY()), SIZE, SIZE);
         graphicsContext2D.setFill(Color.valueOf(starSystem.getStatehood().getColor()));
     }
 
     @Override
-    boolean isNameVisible() {
+    protected boolean isNameVisible() {
         return true;
     }
 
     @Override
-    GraphicsContext getGraphicsContext() {
+    protected GraphicsContext getGraphicsContext() {
         return graphicsContext2D;
     }
 
     @Override
-    StarSystem getStarSystem() {
+    protected StarSystem getStarSystem() {
         return starSystem;
     }
 
     @Override
-    Integer getHorizontalIndent() {
+    protected Integer getHorizontalIndent() {
         return HORIZONTAL_INDENT;
     }
 }

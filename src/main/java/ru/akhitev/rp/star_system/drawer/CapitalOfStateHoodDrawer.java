@@ -3,6 +3,7 @@ package ru.akhitev.rp.star_system.drawer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import ru.akhitev.rp.map.drawer.ScalingManager;
+import ru.akhitev.rp.star_system.drawer.AbstractStarSystemDrawer;
 import ru.akhitev.rp.star_system.entity.StarSystem;
 
 public class CapitalOfStateHoodDrawer extends AbstractStarSystemDrawer {
@@ -12,36 +13,36 @@ public class CapitalOfStateHoodDrawer extends AbstractStarSystemDrawer {
     private GraphicsContext graphicsContext2D;
     private StarSystem starSystem;
 
-    CapitalOfStateHoodDrawer(GraphicsContext graphicsContext2D, StarSystem starSystem, ScalingManager scalingManager) {
+    public CapitalOfStateHoodDrawer(GraphicsContext graphicsContext2D, StarSystem starSystem, ScalingManager scalingManager) {
         this.graphicsContext2D = graphicsContext2D;
         this.starSystem = starSystem;
         this.scalingManager = scalingManager;
     }
 
     @Override
-    void drawStarSystemFigure() {
+    public void drawStarSystemFigure() {
         prepareFigureColors();
         graphicsContext2D.fillOval(scalingManager.scaleCoordinate(starSystem.getCoordinateX()), scalingManager.scaleCoordinate(starSystem.getCoordinateY()), SIZE, SIZE);
         graphicsContext2D.setFill(Color.valueOf(starSystem.getStatehood().getColor()));
     }
 
     @Override
-    boolean isNameVisible() {
+    public boolean isNameVisible() {
         return true;
     }
 
     @Override
-    GraphicsContext getGraphicsContext() {
+    public GraphicsContext getGraphicsContext() {
         return graphicsContext2D;
     }
 
     @Override
-    StarSystem getStarSystem() {
+    public StarSystem getStarSystem() {
         return starSystem;
     }
 
     @Override
-    Integer getHorizontalIndent() {
+    public Integer getHorizontalIndent() {
         return HORIZONTAL_INDENT;
     }
 }

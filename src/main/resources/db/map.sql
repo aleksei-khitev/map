@@ -3,7 +3,7 @@ INSERT INTO Super_State_Hood(id, name, image, color) VALUES (0,'Galactic Empire'
 INSERT INTO State_Hood(id, name, image, color) VALUES (0,'Earth Alliance', 'images/statehood/ea.png', 'GREEN');
 
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (0,'Sol', 0, 0, 0, 320.0, 695.0);
-INSERT INTO planet(id, star_system_id, name, population) VALUES (0, 0, 'Земля', 10000000);
+INSERT INTO planet(id, star_system_id, name, population) VALUES (0, 0, 'Земля', 10000000000);
 INSERT INTO planet(id, star_system_id, name, population) VALUES (1, 0, 'Марс', 50000000);
 
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (1,'Proxima', 0, 0, 2, 360.0, 710.0);
@@ -373,3 +373,20 @@ DELETE FROM Star_System where id = 160
 DELETE FROM Star_System where id = 162
 DELETE FROM Star_System where id = 161
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (264, 'Dakota', 0, 0, 3, 415.0, 601.0);
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (280, 'Orion', 0, 0, 2, 301.6666666666667, 627.3333333333334);
+DELETE FROM Star_System where id = 16
+INSERT INTO State_Hood(id, name, color) VALUES (23,'12 Colonies', '0x80b380ff');
+UPDATE Star_System SET name = 'Yorkshire', statehood_id = 23, super_statehood_id = 0, system_importance = 2, coordinateX = 290.3333333333333, coordinateY = 605.6666666666666 WHERE id = 253
+UPDATE Star_System SET name = 'Verdin Junction', statehood_id = 23, super_statehood_id = 0, system_importance = 2, coordinateX = 270.6666666666667, coordinateY = 624.6666666666666 WHERE id = 251
+UPDATE Star_System SET name = 'New Texas', statehood_id = 23, super_statehood_id = 0, system_importance = 2, coordinateX = 310.6666666666667, coordinateY = 621.0 WHERE id = 254
+UPDATE Star_System SET name = 'Angeles', statehood_id = 23, super_statehood_id = 0, system_importance = 2, coordinateX = 291.0, coordinateY = 635.3333333333334 WHERE id = 252
+UPDATE Star_System SET name = 'Rigel', statehood_id = 23, super_statehood_id = 0, system_importance = 2, coordinateX = 270.6666666666667, coordinateY = 644.6666666666666 WHERE id = 250
+UPDATE Star_System SET name = 'Patekron', statehood_id = 23, super_statehood_id = 0, system_importance = 2, coordinateX = 261.0, coordinateY = 670.3333333333334 WHERE id = 218
+UPDATE Star_System SET name = 'Pleides', statehood_id = 23, super_statehood_id = 0, system_importance = 2, coordinateX = 285.6666666666667, coordinateY = 685.3333333333334 WHERE id = 217
+UPDATE Star_System SET name = 'Tyron', statehood_id = 23, super_statehood_id = 0, system_importance = 2, coordinateX = 260.6666666666667, coordinateY = 691.0 WHERE id = 220
+UPDATE Star_System SET name = 'Parnasus', statehood_id = 23, super_statehood_id = 0, system_importance = 2, coordinateX = 241.0, coordinateY = 681.0 WHERE id = 219
+UPDATE Star_System SET name = 'Hades', statehood_id = 23, super_statehood_id = 0, system_importance = 2, coordinateX = 245.66666666666666, coordinateY = 705.3333333333334 WHERE id = 221
+UPDATE Star_System SET name = 'Krackov', statehood_id = 23, super_statehood_id = 0, system_importance = 2, coordinateX = 270.6666666666667, coordinateY = 710.6666666666666 WHERE id = 222
+DELETE FROM Star_System where id = 18
+UPDATE Star_System SET name = 'Oloron', statehood_id = 23, super_statehood_id = 0, system_importance = 2, coordinateX = 255.66666666666666, coordinateY = 724.3333333333334 WHERE id = 223
+INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (281, 'Regula', 0, 0, 3, 251.66666666666666, 730.6666666666666);

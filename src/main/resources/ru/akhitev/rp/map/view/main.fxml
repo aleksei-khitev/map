@@ -23,12 +23,19 @@
             <children>
                 <fx:define>
                     <ToggleGroup fx:id="scaleGroup"></ToggleGroup>
+                    <ToggleGroup fx:id="mapTypeGroup"></ToggleGroup>
                 </fx:define>
                 <MenuBar>
                     <Menu text="Масштаб">
                         <RadioMenuItem fx:id="scaleX1" text="x1" toggleGroup="$scaleGroup" />
                         <RadioMenuItem fx:id="scaleX2" text="x2" toggleGroup="$scaleGroup" />
                         <RadioMenuItem fx:id="scaleX3" text="x3" toggleGroup="$scaleGroup" />
+                    </Menu>
+                    <Menu text="Тип карты">
+                        <RadioMenuItem fx:id="policyMap" text="Политическая карта" toggleGroup="$mapTypeGroup" />
+                        <RadioMenuItem fx:id="populationMap" text="Карта плотности населения" toggleGroup="$mapTypeGroup" />
+                        <RadioMenuItem fx:id="resourceMap" text="Карта критических ресурсов" toggleGroup="$mapTypeGroup" disable="true"/>
+                        <RadioMenuItem fx:id="militaryMap" text="Карта размещения вооруженных сил" toggleGroup="$mapTypeGroup" disable="true" />
                     </Menu>
                 </MenuBar>
                 <Label styleClass="title_label">Galactic Map</Label>

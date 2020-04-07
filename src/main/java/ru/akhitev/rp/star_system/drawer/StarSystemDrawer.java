@@ -12,36 +12,36 @@ public class StarSystemDrawer extends AbstractStarSystemDrawer {
     private GraphicsContext graphicsContext2D;
     private StarSystem starSystem;
 
-    StarSystemDrawer(GraphicsContext graphicsContext2D, StarSystem starSystem, ScalingManager scalingManager) {
+    public StarSystemDrawer(GraphicsContext graphicsContext2D, StarSystem starSystem, ScalingManager scalingManager) {
         this.graphicsContext2D = graphicsContext2D;
         this.starSystem = starSystem;
         this.scalingManager = scalingManager;
     }
 
     @Override
-    void drawStarSystemFigure() {
+    public void drawStarSystemFigure() {
         prepareFigureColors();
         graphicsContext2D.fillOval(scalingManager.scaleCoordinate(starSystem.getCoordinateX()), scalingManager.scaleCoordinate(starSystem.getCoordinateY()), SIZE, SIZE);
         graphicsContext2D.setFill(Color.valueOf(starSystem.getStatehood().getColor()));
     }
 
     @Override
-    boolean isNameVisible() {
+    protected boolean isNameVisible() {
         return  !(scalingManager.getScale().equals(1));
     }
 
     @Override
-    GraphicsContext getGraphicsContext() {
+    protected GraphicsContext getGraphicsContext() {
         return graphicsContext2D;
     }
 
     @Override
-    StarSystem getStarSystem() {
+    protected StarSystem getStarSystem() {
         return starSystem;
     }
 
     @Override
-    Integer getHorizontalIndent() {
+    protected Integer getHorizontalIndent() {
         return HORIZONTAL_INDENT;
     }
 }

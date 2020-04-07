@@ -127,6 +127,18 @@ public class StarSystem {
         if (superStatehood != null) {
             builder.append(String.format("<h4>Сверхобъединение:</h4> %s", superStatehood.getName()));
         }
+        if (planets != null && planets.size() > 0) {
+            builder.append("<h5>ПЛанеты в системе</h5><ul>");
+            planets.stream().forEach(p -> builder.append("<li>").append(p).append("</li>"));
+            builder.append("</ul>");
+            long population = getPlanets().stream()
+                    .filter(planet -> planet.getPopulation() != null)
+                    .mapToLong(Planet::getPopulation).sum();
+            if (population > 0) {
+                builder.append("<b>Общее население в системе: ").append(population).append("<br/>");
+            }
+        }
+
         builder.append((starSystemFleetUnits !=null && starSystemFleetUnits.size() > 0)?"<h5>Космические силы гарнизона:</h5>" + starSystemFleetUnits.stream()
                 .map(StarSystemFleetUnit::toString)
                 .map(s -> s + "<br/>")

@@ -22,6 +22,8 @@ import ru.akhitev.rp.map.drawer.EmblemDrawer;
 import ru.akhitev.rp.map.drawer.GridOfCoordinatesDrawer;
 import ru.akhitev.rp.star_system.controller.star_system_general.CreateSystemDialogController;
 import ru.akhitev.rp.star_system.controller.star_system_general.EditSystemDialogController;
+import ru.akhitev.rp.star_system.drawer.PolicyStarSystemDrawingManager;
+import ru.akhitev.rp.star_system.drawer.PopulationStarSystemDrawingManager;
 import ru.akhitev.rp.star_system.drawer.StarSystemDrawingManager;
 import ru.akhitev.rp.star_system.entity.StarSystem;
 import ru.akhitev.rp.map.hyperspace.EmpireLightSpeedCalculator;
@@ -49,6 +51,8 @@ public class MapController extends AbstractController {
     @FXML RadioMenuItem scaleX1;
     @FXML RadioMenuItem scaleX2;
     @FXML RadioMenuItem scaleX3;
+    @FXML RadioMenuItem policyMap;
+    @FXML RadioMenuItem populationMap;
     private ContextMenu contextMenu;
     private double contextX;
     private double contextY;
@@ -57,43 +61,63 @@ public class MapController extends AbstractController {
     private SuperStateHoodRepository superStateHoodRepository;
     private final GridOfCoordinatesDrawer gridOfCoordinatesDrawer;
     private final EmblemDrawer emblemDrawer;
-    private final StarSystemDrawingManager systemDrawingManager;
+    private StarSystemDrawingManager starSystemDrawingManager;
     private final ScalingManager scalingManager;
     private final Router router;
     private final VortexSpeedCalculator vortexSpeedCalculator;
     private final EmpireLightSpeedCalculator empireLightSpeedCalculator;
 
     @Autowired
-    public MapController(StarSystemRepository starSystemRepository, StateHoodRepository stateHoodRepository, SuperStateHoodRepository superStateHoodRepository, GridOfCoordinatesDrawer gridOfCoordinatesDrawer, EmblemDrawer emblemDrawer, StarSystemDrawingManager systemDrawingManager, ScalingManager scalingManager, Router router, VortexSpeedCalculator vortexSpeedCalculator, EmpireLightSpeedCalculator empireLightSpeedCalculator) {
+    public MapController(StarSystemRepository starSystemRepository,
+                         StateHoodRepository stateHoodRepository,
+                         SuperStateHoodRepository superStateHoodRepository,
+                         GridOfCoordinatesDrawer gridOfCoordinatesDrawer,
+                         EmblemDrawer emblemDrawer,
+                         PolicyStarSystemDrawingManager starSystemDrawingManager,
+                         PopulationStarSystemDrawingManager populationStarSystemDrawingManager,
+                         ScalingManager scalingManager, Router router,
+                         VortexSpeedCalculator vortexSpeedCalculator,
+                         EmpireLightSpeedCalculator empireLightSpeedCalculator) {
         this.starSystemRepository = starSystemRepository;
         this.stateHoodRepository = stateHoodRepository;
         this.superStateHoodRepository = superStateHoodRepository;
         this.gridOfCoordinatesDrawer = gridOfCoordinatesDrawer;
         this.emblemDrawer = emblemDrawer;
-        this.systemDrawingManager = systemDrawingManager;
+        this.starSystemDrawingManager = starSystemDrawingManager;
         this.scalingManager = scalingManager;
         this.router = router;
         this.vortexSpeedCalculator = vortexSpeedCalculator;
         this.empireLightSpeedCalculator = empireLightSpeedCalculator;
         scalingManager.setScale(1);
-        //initialize();
     }
 
 
     @FXML
     public void setScale(int scale) {
         scalingManager.setScale(scale);
-        initialize();
+        drawMap();
     }
 
     @FXML
     public void initialize() {
+        starSystemDrawingManager = getContext().getBean(PolicyStarSystemDrawingManager.class);
         drawMap();
-        addOnMousePressedEvent();
         prepareContextMenu();
         scaleX1.setOnAction((actionEvent) -> setScale(1));
         scaleX2.setOnAction((actionEvent) -> setScale(2));
         scaleX3.setOnAction((actionEvent) -> setScale(3));
+        policyMap.setOnAction((actionEvent) -> drawPolicyMap());
+        populationMap.setOnAction((actionEvent) -> drawPopulationMap());
+    }
+
+    private void drawPolicyMap() {
+        starSystemDrawingManager = getContext().getBean(PolicyStarSystemDrawingManager.class);
+        drawMap();
+    }
+
+    private void drawPopulationMap() {
+        starSystemDrawingManager = getContext().getBean(PopulationStarSystemDrawingManager.class);
+        drawMap();
     }
 
     private void drawMap() {
@@ -104,7 +128,7 @@ public class MapController extends AbstractController {
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, map.getWidth(), map.getHeight());
         gridOfCoordinatesDrawer.draw(map);
-        systemDrawingManager.draw(gc);
+        starSystemDrawingManager.draw(gc);
     }
 
     private void prepareContextMenu() {
@@ -201,10 +225,6 @@ public class MapController extends AbstractController {
         gc.setFill(Color.WHITE);
         gc.fillRect(0, 0, map.getWidth(), map.getHeight());
         gc.clearRect(0, 0, map.getWidth(), map.getHeight());
-    }
-
-    private void addOnMousePressedEvent() {
-
     }
 
     private Optional<StarSystem> getStarSystemByContextMenuCoordinates() {

@@ -8,19 +8,19 @@ import javafx.scene.paint.Stop;
 import ru.akhitev.rp.map.drawer.ScalingManager;
 import ru.akhitev.rp.star_system.entity.StarSystem;
 
-abstract class AbstractStarSystemDrawer {
-    ScalingManager scalingManager;
+public abstract class AbstractStarSystemDrawer {
+    protected ScalingManager scalingManager;
 
-    abstract void drawStarSystemFigure();
+    public abstract void drawStarSystemFigure();
 
-    void drawStarSystemName() {
+    public void drawStarSystemName() {
         if (isNameVisible()) {
             prepareNameTextColor();
             getGraphicsContext().fillText(getStarSystem().getName(), scalingManager.scaleCoordinate(getStarSystem().getCoordinateX()) + getHorizontalIndent(), scalingManager.scaleCoordinate(getStarSystem().getCoordinateY()));
         }
     }
 
-    void prepareFigureColors() {
+    protected void prepareFigureColors() {
         if (getStarSystem().getSuperStatehood() != null) {
             Stop[] stops1 = new Stop[]{new Stop(0, Color.valueOf(getStarSystem().getStatehood().getColor())),
                     new Stop(1, Color.valueOf(getStarSystem().getSuperStatehood().getColor()))};
@@ -40,11 +40,11 @@ abstract class AbstractStarSystemDrawer {
         }
     }
 
-    abstract boolean isNameVisible();
+    protected abstract boolean isNameVisible();
 
-    abstract GraphicsContext getGraphicsContext();
+    protected abstract GraphicsContext getGraphicsContext();
 
-    abstract StarSystem getStarSystem();
+    protected abstract StarSystem getStarSystem();
 
-    abstract Integer getHorizontalIndent();
+    protected abstract Integer getHorizontalIndent();
 }

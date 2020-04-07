@@ -17,8 +17,6 @@
         <Label GridPane.rowIndex="2" GridPane.columnIndex="0">Население</Label>
         <TextField fx:id="population" GridPane.rowIndex="2" GridPane.columnIndex="1" />
     </GridPane>
-    <HBox>
-        <Button fx:id="save" text="Сохранить и закрыть" />
-        <Button fx:id="next" text="Сохранить и перейти к ресурсам" />
-    </HBox>
+    <Button fx:id="save" text="Сохранить и закрыть" />
+    <Button fx:id="next" text="Сохранить и перейти к ресурсам" />
 </VBox>
