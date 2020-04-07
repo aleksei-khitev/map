@@ -4,6 +4,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -139,6 +140,21 @@ public class Planet {
 
     public void setPlanetDefenceFleetUnits(Set<PlanetDefenceFleetUnit> planetDefenceFleetUnits) {
         this.planetDefenceFleetUnits = planetDefenceFleetUnits;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Planet planet = (Planet) o;
+        return Objects.equals(id, planet.id) &&
+                Objects.equals(starSystem, planet.starSystem) &&
+                Objects.equals(name, planet.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, starSystem, name);
     }
 
     @Override

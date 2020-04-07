@@ -7,6 +7,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       prefHeight="400.0" prefWidth="800.0">
@@ -16,10 +18,19 @@
                 <Label GridPane.rowIndex="0" GridPane.columnIndex="0">Ресурс</Label>
                 <ComboBox fx:id="resourceComboBox" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-                <Label GridPane.rowIndex="1" GridPane.columnIndex="0">Количество</Label>
-                <TextField fx:id="resourceAmount" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label GridPane.rowIndex="1" GridPane.columnIndex="0">Запасы</Label>
+                <ComboBox fx:id="resourceAmount" GridPane.rowIndex="1" GridPane.columnIndex="1" >
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Малые" />
+                            <String fx:value="Обычные" />
+                            <String fx:value="Богатые" />
+                            <String fx:value="Гигантсие" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
 
-                <Button fx:id="addResourceButton" text="Добавить" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <Button fx:id="addResourceButton" text="Добавить" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
             </GridPane>
             <ListView fx:id="planetResources" maxHeight="100" />
         </VBox>
@@ -29,10 +40,19 @@
                 <Label GridPane.rowIndex="0" GridPane.columnIndex="0">Ресурс на планете</Label>
                 <ComboBox fx:id="planetResourceComboBox" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-                <Label GridPane.rowIndex="1" GridPane.columnIndex="0">Добыча в год</Label>
-                <TextField fx:id="resourceAmountPerYear" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label GridPane.rowIndex="1" GridPane.columnIndex="0">Поставки от добычи</Label>
+                <ComboBox fx:id="resourceAmountPerYear" GridPane.rowIndex="1" GridPane.columnIndex="1" >
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Малые" />
+                            <String fx:value="Обычные" />
+                            <String fx:value="Богатые" />
+                            <String fx:value="Гигантские" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
 
-                <Button fx:id="addResourceMiningButton" text="Добавить" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <Button fx:id="addResourceMiningButton" text="Добавить" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
             </GridPane>
             <ListView fx:id="planetMining" maxHeight="100" />
         </VBox>

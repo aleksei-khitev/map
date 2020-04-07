@@ -15,14 +15,16 @@ import ru.akhitev.rp.star_system.repo.PlanetMiningRepo;
 import ru.akhitev.rp.star_system.repo.PlanetRepo;
 import ru.akhitev.rp.star_system.repo.PlanetResourceRepo;
 
+import java.util.Random;
+
 public class EditPlanetResourcesDialog {
     @FXML private ComboBox<CriticalResource> resourceComboBox;
-    @FXML private TextField resourceAmount;
+    @FXML private ComboBox<String> resourceAmount;
     @FXML private Button addResourceButton;
     @FXML private ListView<PlanetResource> planetResources;
 
     @FXML private ComboBox<PlanetResource> planetResourceComboBox;
-    @FXML private TextField resourceAmountPerYear;
+    @FXML private ComboBox<String> resourceAmountPerYear;
     @FXML private Button addResourceMiningButton;
     @FXML private ListView<PlanetMining> planetMining;
 
@@ -52,15 +54,15 @@ public class EditPlanetResourcesDialog {
             PlanetResource resource = new PlanetResource();
             resource.setPlanet(planet);
             resource.setCriticalResource(resourceComboBox.getSelectionModel().getSelectedItem());
-            resource.setAmount(Long.valueOf(resourceAmount.getText()));
-            planetResourceRepo.save(resource);
+            resource.setAmount(calculateOverallAmount());
+            resource = planetResourceRepo.save(resource);
             reloadLists();
         });
         addResourceMiningButton.setOnMouseClicked(event -> {
             PlanetMining mining = new PlanetMining();
             mining.setPlanet(planet);
             mining.setCriticalResource(planetResourceComboBox.getSelectionModel().getSelectedItem().getCriticalResource());
-            mining.setAmountPerYear(Long.valueOf(resourceAmountPerYear.getText()));
+            mining.setAmountPerYear(calculatePerYearAmount());
             planetMiningRepo.save(mining);
             reloadLists();
         });
@@ -83,5 +85,50 @@ public class EditPlanetResourcesDialog {
                 planetMining.getItems().add(mining);
             }
         }
+    }
+
+    private long calculateOverallAmount() {
+        switch (resourceComboBox.getSelectionModel().getSelectedItem().getName()) {
+            case "Зерсиумная руда":
+                return processAmountWithBorders(5000, 10000);
+            case "Кристаллы Нова" :
+                return processAmountWithBorders(1000, 9000);
+            default:
+                return processAmountWithBorders(10000, 20000);
+        }
+    }
+
+    private long calculatePerYearAmount() {
+        switch (resourceComboBox.getSelectionModel().getSelectedItem().getName()) {
+            case "Зерсиумная руда":
+                return processAmountWithBorders(500, 1000);
+            case "Кристаллы Нова" :
+                return processAmountWithBorders(100, 900);
+            default:
+                return processAmountWithBorders(1000, 2000);
+        }
+    }
+
+    private long processAmountWithBorders(long bottom, long top) {
+        long min;
+        long max;
+        switch (resourceAmount.getSelectionModel().getSelectedItem()) {
+            case "Гигантские" :
+                min = top * 3;
+                max = top * 4;
+                break;
+            case "Богатые":
+                min = top * 2;
+                max = top * 3;
+                break;
+            case "Обычные":
+                min = top;
+                max = top * 2;
+                break;
+            default:
+                min = bottom;
+                max = top;
+        }
+        return (new Random().nextLong() % (max - min)) + min;
     }
 }

@@ -13,11 +13,11 @@ public class PlanetMining {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "planet_id", insertable = false, updatable = false)
+    @JoinColumn(name = "planet_id")
     private Planet planet;
 
     @ManyToOne
-    @JoinColumn(name = "critical_resource_id", insertable = false, updatable = false)
+    @JoinColumn(name = "critical_resource_id")
     private CriticalResource criticalResource;
 
     @Column(name = "amount_per_year")
