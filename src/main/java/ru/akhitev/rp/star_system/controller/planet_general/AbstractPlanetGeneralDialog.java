@@ -91,7 +91,7 @@ abstract class AbstractPlanetGeneralDialog extends AbstractDialog {
 
     void openResourceDialog(Scene scene, Planet planet) {
         scene = openDialog(scene, new EditPlanetResourcesDialog(planet, context),"/ru/akhitev/rp/star_system/editPlanet_resources_productions.fxml");
-        scene.getWindow().setWidth(800);
-        scene.getWindow().setHeight(400);
+        scene.getWindow().setWidth(900);
+        scene.getWindow().setHeight(300);
     }
 }

@@ -17,6 +17,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import ru.akhitev.rp.fleet.entity.FleetUnit;
 import ru.akhitev.rp.fleet.repo.FleetUnitRepo;
+import ru.akhitev.rp.production.repo.CriticalProductionRepo;
 import ru.akhitev.rp.resource.repo.CriticalResourceRepo;
 import ru.akhitev.rp.ship.repo.ShipRepo;
 import ru.akhitev.rp.star_system.repo.StarSystemRepository;
@@ -31,7 +32,8 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackageClasses = {StarSystemRepository.class,
         FleetUnitRepo.class, ShipRepo.class, CriticalResourceRepo.class,
-        StateHoodRepository.class, SuperStateHoodRepository.class},
+        StateHoodRepository.class, SuperStateHoodRepository.class,
+        CriticalProductionRepo.class},
         repositoryBaseClass = RefreshableEntityRepositoryImpl.class)
 @ComponentScan(basePackageClasses={Launcher.class})
 public class SpringConfig {
@@ -60,12 +62,13 @@ public class SpringConfig {
     private Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-        properties.put("hibernate.hbm2ddl.auto", "update");
+        properties.put("hibernate.hbm2ddl.auto", "create");
         properties.put("hibernate.hbm2ddl.import_files", "db/resource_and_production.sql," +
                 "db/fleet_general.sql," +
                 "db/fleet_ships.sql," +
                 "db/fleet_unit.sql," +
                 "db/map.sql," +
+                "db/import.sql," +
                 "db/star_system_fleet_unit.sql");
         properties.put("hibernate.show_sql", true);
         properties.put("hibernate.max_fetch_depth", 3);

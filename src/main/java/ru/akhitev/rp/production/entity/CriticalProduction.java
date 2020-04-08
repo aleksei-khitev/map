@@ -3,7 +3,7 @@ package ru.akhitev.rp.production.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "critical_resource")
+@Table(name = "critical_production")
 public class CriticalProduction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

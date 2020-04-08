@@ -1,12 +1,11 @@
 package ru.akhitev.rp.star_system.entity;
 
 import ru.akhitev.rp.production.entity.CriticalProduction;
-import ru.akhitev.rp.resource.entity.CriticalResource;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "planet_resource_mining")
+@Table(name = "planet_production")
 public class PlanetProduction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +21,7 @@ public class PlanetProduction {
     private CriticalProduction criticalProduction;
 
     @Column(name = "amount_per_year")
-    private Long amountPerYear;
+    private Integer level;
 
     public Long getId() {
         return id;
@@ -48,16 +47,16 @@ public class PlanetProduction {
         this.criticalProduction = criticalProduction;
     }
 
-    public Long getAmountPerYear() {
-        return amountPerYear;
+    public Integer getLevel() {
+        return level;
     }
 
-    public void setAmountPerYear(Long amountPerYear) {
-        this.amountPerYear = amountPerYear;
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
     @Override
     public String toString() {
-        return criticalProduction + " (" + amountPerYear + "/год)";
+        return criticalProduction + " (уровень " + level + ")";
     }
 }

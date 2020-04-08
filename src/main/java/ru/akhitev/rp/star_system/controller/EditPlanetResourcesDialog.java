@@ -4,14 +4,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import org.springframework.context.ApplicationContext;
+import ru.akhitev.rp.production.entity.CriticalProduction;
+import ru.akhitev.rp.production.repo.CriticalProductionRepo;
 import ru.akhitev.rp.resource.entity.CriticalResource;
 import ru.akhitev.rp.resource.repo.CriticalResourceRepo;
 import ru.akhitev.rp.star_system.entity.Planet;
 import ru.akhitev.rp.star_system.entity.PlanetMining;
+import ru.akhitev.rp.star_system.entity.PlanetProduction;
 import ru.akhitev.rp.star_system.entity.PlanetResource;
 import ru.akhitev.rp.star_system.repo.PlanetMiningRepo;
+import ru.akhitev.rp.star_system.repo.PlanetProductionRepo;
 import ru.akhitev.rp.star_system.repo.PlanetRepo;
 import ru.akhitev.rp.star_system.repo.PlanetResourceRepo;
 
@@ -28,12 +31,19 @@ public class EditPlanetResourcesDialog {
     @FXML private Button addResourceMiningButton;
     @FXML private ListView<PlanetMining> planetMining;
 
+    @FXML private ComboBox<CriticalProduction> productionComboBox;
+    @FXML private ComboBox<String> productionAmountPerYear;
+    @FXML private Button addProductionButton;
+    @FXML private ListView<PlanetProduction> planetProduction;
+
     private Planet planet;
     private ApplicationContext context;
     private PlanetRepo planetRepo;
     private CriticalResourceRepo criticalResourceRepo;
     private PlanetResourceRepo planetResourceRepo;
     private PlanetMiningRepo planetMiningRepo;
+    private CriticalProductionRepo criticalProductionRepo;
+    private PlanetProductionRepo planetProductionRepo;
 
     public EditPlanetResourcesDialog(Planet planet, ApplicationContext context) {
         this.planet = planet;
@@ -42,12 +52,17 @@ public class EditPlanetResourcesDialog {
         criticalResourceRepo = context.getBean(CriticalResourceRepo.class);
         planetResourceRepo = context.getBean(PlanetResourceRepo.class);
         planetMiningRepo = context.getBean(PlanetMiningRepo.class);
+        criticalProductionRepo = context.getBean(CriticalProductionRepo.class);
+        planetProductionRepo = context.getBean(PlanetProductionRepo.class);
     }
 
     @FXML
     public void initialize() {
         for (CriticalResource resource : criticalResourceRepo.findAll()) {
             resourceComboBox.getItems().add(resource);
+        }
+        for (CriticalProduction production : criticalProductionRepo.findAll()) {
+            productionComboBox.getItems().add(production);
         }
         reloadLists();
         addResourceButton.setOnMouseClicked(event -> {
@@ -66,12 +81,21 @@ public class EditPlanetResourcesDialog {
             planetMiningRepo.save(mining);
             reloadLists();
         });
+        addProductionButton.setOnMouseClicked(event -> {
+            PlanetProduction production = new PlanetProduction();
+            production.setPlanet(planet);
+            production.setCriticalProduction(productionComboBox.getSelectionModel().getSelectedItem());
+            production.setLevel(Integer.valueOf(productionAmountPerYear.getSelectionModel().getSelectedItem()));
+            planetProductionRepo.save(production);
+            reloadLists();
+        });
     }
 
     private void reloadLists() {
         planetResources.getItems().clear();
         planetResourceComboBox.getItems().clear();
         planetMining.getItems().clear();
+        planetProduction.getItems().clear();
         planetRepo.refresh(planet);
         planet = planetRepo.findById(planet.getId()).get();
         if (planet.getPlanetResources() != null) {
@@ -83,6 +107,11 @@ public class EditPlanetResourcesDialog {
         if (planet.getPlanetMinings() != null) {
             for (PlanetMining mining : planet.getPlanetMinings()) {
                 planetMining.getItems().add(mining);
+            }
+        }
+        if (planet.getPlanetProductions() != null) {
+            for (PlanetProduction production : planet.getPlanetProductions()) {
+                planetProduction.getItems().add(production);
             }
         }
     }
