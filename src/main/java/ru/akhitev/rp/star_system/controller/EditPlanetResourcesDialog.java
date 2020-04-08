@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import ru.akhitev.rp.production.entity.CriticalProduction;
 import ru.akhitev.rp.production.repo.CriticalProductionRepo;
@@ -18,9 +20,16 @@ import ru.akhitev.rp.star_system.repo.PlanetProductionRepo;
 import ru.akhitev.rp.star_system.repo.PlanetRepo;
 import ru.akhitev.rp.star_system.repo.PlanetResourceRepo;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Random;
 
 public class EditPlanetResourcesDialog {
+    private static final String ADD_PLANET_RESOURCE_QUERY = "INSERT INTO planet_resource(id, planet_id, critical_resource_id, amount) VALUES (%s, %s, %s, %s);";
+    private static final String ADD_PLANET_MINING_QUERY = "INSERT INTO planet_resource_mining(id, planet_id, critical_resource_id, amount_per_year) VALUES (%s, %s, %s, %s);";
+    private static final String ADD_PLANET_PRODUCTION_QUERY = "INSERT INTO planet_production(id, planet_id, critical_production_id, level) VALUES (%s, %s, %s, %s);";
+    private static Logger logger = LoggerFactory.getLogger(EditPlanetResourcesDialog.class);
     @FXML private ComboBox<CriticalResource> resourceComboBox;
     @FXML private ComboBox<String> resourceAmount;
     @FXML private Button addResourceButton;
@@ -71,6 +80,11 @@ public class EditPlanetResourcesDialog {
             resource.setCriticalResource(resourceComboBox.getSelectionModel().getSelectedItem());
             resource.setAmount(calculateOverallAmount());
             resource = planetResourceRepo.save(resource);
+            String query = String.format(ADD_PLANET_RESOURCE_QUERY,
+                    resource.getId(), resource.getPlanet().getId(),
+                    resource.getCriticalResource().getId(),
+                    resource.getAmount());
+            printQuery(query);
             reloadLists();
         });
         addResourceMiningButton.setOnMouseClicked(event -> {
@@ -78,7 +92,12 @@ public class EditPlanetResourcesDialog {
             mining.setPlanet(planet);
             mining.setCriticalResource(planetResourceComboBox.getSelectionModel().getSelectedItem().getCriticalResource());
             mining.setAmountPerYear(calculatePerYearAmount());
-            planetMiningRepo.save(mining);
+            mining = planetMiningRepo.save(mining);
+            String query = String.format(ADD_PLANET_MINING_QUERY,
+                    mining.getId(), mining.getPlanet().getId(),
+                    mining.getCriticalResource().getId(),
+                    mining.getAmountPerYear());
+            printQuery(query);
             reloadLists();
         });
         addProductionButton.setOnMouseClicked(event -> {
@@ -86,7 +105,12 @@ public class EditPlanetResourcesDialog {
             production.setPlanet(planet);
             production.setCriticalProduction(productionComboBox.getSelectionModel().getSelectedItem());
             production.setLevel(Integer.valueOf(productionAmountPerYear.getSelectionModel().getSelectedItem()));
-            planetProductionRepo.save(production);
+            production = planetProductionRepo.save(production);
+            String query = String.format(ADD_PLANET_PRODUCTION_QUERY,
+                    production.getId(), production.getPlanet().getId(),
+                    production.getCriticalProduction().getId(),
+                    production.getLevel());
+            printQuery(query);
             reloadLists();
         });
     }
@@ -159,5 +183,15 @@ public class EditPlanetResourcesDialog {
                 max = top;
         }
         return (new Random().nextLong() % (max - min)) + min;
+    }
+
+    void printQuery(String query) {
+        try (FileWriter fileWriter = new FileWriter("queries_history.sql", true);
+             PrintWriter printWriter = new PrintWriter(fileWriter)) {
+            printWriter.println(query);
+            logger.info("Запрос {} успешно сохранен в файл", query);
+        } catch (IOException e) {
+            logger.error("Ошибка при сохранении запроса в файл", e);
+        }
     }
 }

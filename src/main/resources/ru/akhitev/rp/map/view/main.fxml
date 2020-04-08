@@ -34,7 +34,7 @@
                     <Menu text="Тип карты">
                         <RadioMenuItem fx:id="policyMap" text="Политическая карта" toggleGroup="$mapTypeGroup" />
                         <RadioMenuItem fx:id="populationMap" text="Карта плотности населения" toggleGroup="$mapTypeGroup" />
-                        <RadioMenuItem fx:id="resourceMap" text="Карта критических ресурсов" toggleGroup="$mapTypeGroup" disable="true"/>
+                        <RadioMenuItem fx:id="resourceMap" text="Карта критических ресурсов" toggleGroup="$mapTypeGroup" />
                         <RadioMenuItem fx:id="militaryMap" text="Карта размещения вооруженных сил" toggleGroup="$mapTypeGroup" disable="true" />
                     </Menu>
                 </MenuBar>

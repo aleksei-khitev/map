@@ -4,6 +4,9 @@ INSERT INTO State_Hood(id, name, image, color) VALUES (0,'Earth Alliance', 'imag
 
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (0,'Sol', 0, 0, 0, 320.0, 695.0);
 INSERT INTO planet(id, star_system_id, name, population) VALUES (0, 0, 'Земля', 10000000000);
+INSERT INTO planet_resource(planet_id, critical_resource_id, amount) VALUES (0, 0, 20000);
+INSERT INTO planet_resource(planet_id, critical_resource_id, amount) VALUES (0, 1, 9000);
+INSERT INTO planet_resource(planet_id, critical_resource_id, amount) VALUES (0, 2, 9000);
 INSERT INTO planet(id, star_system_id, name, population) VALUES (1, 0, 'Марс', 50000000);
 
 INSERT INTO Star_System(id, name, statehood_id, super_statehood_id, system_importance, coordinateX, coordinateY) VALUES (1,'Proxima', 0, 0, 2, 360.0, 710.0);

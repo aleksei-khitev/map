@@ -20,7 +20,7 @@ public class PlanetProduction {
     @JoinColumn(name = "critical_production_id")
     private CriticalProduction criticalProduction;
 
-    @Column(name = "amount_per_year")
+    @Column
     private Integer level;
 
     public Long getId() {

@@ -41,7 +41,6 @@ public class MilitaryController extends AbstractController {
 
     @FXML
     public void initialize() {
-        logger.info("stateHoods: " + starSystemRepository.findAll());
         stateHoodRepository.findAll().forEach(state.getItems()::add);
         state.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             Map<LandForce, Long> landForceCount = new HashMap<>();

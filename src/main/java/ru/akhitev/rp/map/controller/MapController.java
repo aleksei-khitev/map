@@ -8,6 +8,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
@@ -24,6 +25,7 @@ import ru.akhitev.rp.star_system.controller.star_system_general.CreateSystemDial
 import ru.akhitev.rp.star_system.controller.star_system_general.EditSystemDialogController;
 import ru.akhitev.rp.star_system.drawer.PolicyStarSystemDrawingManager;
 import ru.akhitev.rp.star_system.drawer.PopulationStarSystemDrawingManager;
+import ru.akhitev.rp.star_system.drawer.ResourceStarSystemDrawingManager;
 import ru.akhitev.rp.star_system.drawer.StarSystemDrawingManager;
 import ru.akhitev.rp.star_system.entity.StarSystem;
 import ru.akhitev.rp.map.hyperspace.EmpireLightSpeedCalculator;
@@ -53,6 +55,7 @@ public class MapController extends AbstractController {
     @FXML RadioMenuItem scaleX3;
     @FXML RadioMenuItem policyMap;
     @FXML RadioMenuItem populationMap;
+    @FXML RadioMenuItem resourceMap;
     private ContextMenu contextMenu;
     private double contextX;
     private double contextY;
@@ -108,6 +111,16 @@ public class MapController extends AbstractController {
         scaleX3.setOnAction((actionEvent) -> setScale(3));
         policyMap.setOnAction((actionEvent) -> drawPolicyMap());
         populationMap.setOnAction((actionEvent) -> drawPopulationMap());
+        resourceMap.setOnAction((actionEvent) -> drawResourceMap());
+        map.setOnMouseClicked(event -> {
+            if(event.getButton().equals(MouseButton.PRIMARY)) {
+                if (event.getClickCount() == 2) {
+                    contextX = scalingManager.reScaleCoordinate(event.getX());
+                    contextY = scalingManager.reScaleCoordinate(event.getY());
+                    processInfoQuering();
+                }
+            }
+        });
     }
 
     private void drawPolicyMap() {
@@ -117,6 +130,11 @@ public class MapController extends AbstractController {
 
     private void drawPopulationMap() {
         starSystemDrawingManager = getContext().getBean(PopulationStarSystemDrawingManager.class);
+        drawMap();
+    }
+
+    private void drawResourceMap() {
+        starSystemDrawingManager = getContext().getBean(ResourceStarSystemDrawingManager.class);
         drawMap();
     }
 

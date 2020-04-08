@@ -1,5 +1,6 @@
 package ru.akhitev.rp.resource.entity;
 
+import javafx.scene.paint.Color;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import ru.akhitev.rp.star_system.entity.PlanetResource;
@@ -21,6 +22,9 @@ public class CriticalResource {
     @Column
     private String description;
 
+    @Column
+    private String color;
+
     @OneToMany(mappedBy = "criticalResource",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
@@ -37,6 +41,10 @@ public class CriticalResource {
 
     public String getDescription() {
         return description;
+    }
+
+    public Color getColor() {
+        return Color.valueOf(color);
     }
 
     @Override
